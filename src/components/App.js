@@ -4,6 +4,8 @@ import Home from './Home'
 import Donate from './Donate'
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ReactGA from 'react-ga';
+import Footer from './Footer';
+import PageNotFound from './PageNotFound';
 
 function App() {
   useEffect(() => {
@@ -15,16 +17,17 @@ function App() {
       <div className="App">
         <header className="Navbar">
           <div className="logo">
-            <img src={require('../assets/corona.svg')} />
+            <img src={require('../assets/corona.svg')} alt='Wait' />
           </div>
           <div className='link'>
-            <Link exact to='/' className='l1'>Home</Link>
-            <Link exact to='/donate' className='l2'>Donate</Link>
+            <Link exact='true' to='/' className='l1'>Home</Link>
+            <Link to='/donate' className='l2'>Donate</Link>
           </div>
         </header>
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/donate' exact component={Donate} />
+          <Route component={PageNotFound} />
         </Switch>
       </div>
     </Router>

@@ -61,31 +61,40 @@ function StateData(props) {
     let h = 0;
     let am_pm = 'AM';
     let format = update.slice(11, 13);
+    if (parseInt(format) >= 13) {
+        h = parseInt(format) - 12;
+    } else {
+        h = parseInt(format)
+    }
     if (parseInt(format) >= 12) {
         am_pm = 'PM'
-        if (parseInt(format) >= 13) {
-            h = format - 12;
-        }
-        h = parseInt(format)
-    } else {
-        h = parseInt(format);
-        am_pm = 'AM';
     }
-
+    stateData && stateData.forEach((state, index) => {
+        if (index !== 0 && parseInt(state.confirmed) > 0) {
+            obj.push({
+                key: `${index}`,
+                state: state.state,
+                confirmed: parseInt(state.confirmed),
+                active: parseInt(state.active),
+                recovered: parseInt(state.recovered),
+                deaths: parseInt(state.deaths)
+            })
+        }
+    })
+    /* {Object.keys(stateData).forEach((val, index) => {
+                    if (stateData[val].confirmed > 0 && val > 0) {
+                        obj.push({
+                            key: stateData[val].state,
+                            state: stateData[val].state,
+                            confirmed: parseInt(stateData[val].confirmed),
+                            active: parseInt(stateData[val].active),
+                            recovered: parseInt(stateData[val].recovered),
+                            deaths: parseInt(stateData[val].deaths)
+                        });
+                    }
+                })} */
     return (
         <React.Fragment>
-            {Object.keys(stateData).forEach((val) => {
-                if (stateData[val].confirmed > 0 && val > 0) {
-                    obj.push({
-                        state: stateData[val].state,
-                        confirmed: parseInt(stateData[val].confirmed),
-                        active: parseInt(stateData[val].active) === 0 ? '-' : parseInt(stateData[val].active),
-                        recovered: parseInt(stateData[val].recovered) === 0 ? '-' : parseInt(stateData[val].recovered),
-                        deaths: parseInt(stateData[val].deaths) === 0 ? '-' : parseInt(stateData[val].deaths)
-                    });
-                }
-            })}
-
             <div style={{ animationDelay: '0.5s' }}>
                 <div className="header-mid">
                     <h1>COVID19 Tracker</h1>
@@ -175,7 +184,8 @@ function StateData(props) {
                             dataSource={obj}
                             scroll={{ y: 500 }}
                             bordered
-                            summary={(pageData) => {
+                            rowKey="id"
+                            summary={() => {
                                 return (
                                     <React.Fragment>
                                         <tr className="footer-content">

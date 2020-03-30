@@ -80,7 +80,7 @@ function IndiaMap(props) {
         const promises = [d3.json('/india.json')];
         Promise.all(promises).then(ready);
         function ready([india]) {
-            states.forEach((state, index) => {
+            states && states.forEach((state, index) => {
                 unemployment.set(state.state.toLowerCase(), state.confirmed);
             });
             svg
@@ -128,7 +128,7 @@ function IndiaMap(props) {
     };
 
     return (
-        <div className="ChoroplethMap fadeInUp" style={{ animationDelay: '1.2s' }}>
+        <div className="ChoroplethMap" style={{ animationDelay: '1.2s' }}>
             <h1 className="header">Statewise Analysis</h1>
             <div className="last-update">
                 <h3>Interact with map for more detail</h3>
@@ -204,6 +204,7 @@ function IndiaMap(props) {
             </div>
             <div className="svg-parent">
                 <svg
+                    className='anim'
                     id="chart"
                     width={window.innerWidth < 768 ? 400 : 580}
                     height={window.innerWidth < 768 ? 550 : 680}
