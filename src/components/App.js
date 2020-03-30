@@ -20,7 +20,8 @@ function App() {
           </div>
           <div className='link'>
             <Link exact='true' to='/' className='l1'>Home</Link>
-            <Link to='/donate' className='l2'>Donate</Link>
+            <a href='https://www.buymeacoffee.com/covid19app' className='l2'><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style={{ height: 51, width: 217 }} /></a>
+            {/* <a href="https://www.buymeacoffee.com/covid19app" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a> */}
           </div>
         </header>
         <Switch>

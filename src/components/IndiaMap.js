@@ -67,12 +67,12 @@ function IndiaMap(props) {
         const path = d3.geoPath(projection);
         // Colorbar
         const buckets = 5;
-        const colors = ['#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3'];
+        const colors = ['#d8d1e1', '#a493b9', '#8a74a4', '#58466c', '#3f324d'];
         const colorScale = d3
             .scaleQuantile()
             .domain(
-                d3.range(buckets).map(function (d) {
-                    return d / buckets * statistic.maxConfirmed;
+                states.map(function (d) {
+                    return d.confirmed / buckets * statistic.maxConfirmed * 0.05;
                 })
             )
             .range(colors);
@@ -99,7 +99,7 @@ function IndiaMap(props) {
                 .on('mouseenter', (d) => {
                     handleMouseover(d.properties.ST_NM);
                     const target = d3.event.target;
-                    d3.select(target.parentNode.appendChild(target)).attr('stroke', '#322354').attr('stroke-width', 2);
+                    d3.select(target.parentNode.appendChild(target)).attr('stroke', '#000000').attr('stroke-width', 2);
                 })
                 .on('mouseleave', (d) => {
                     // const n = unemployment.get(d.properties.ST_NM.toLowerCase());
@@ -120,7 +120,7 @@ function IndiaMap(props) {
 
             svg
                 .append('path')
-                .attr('stroke', '#937ec2')
+                .attr('stroke', '#000000')
                 .attr('fill', 'none')
                 .attr('stroke-width', 1)
                 .attr('d', path(topojson.mesh(india, india.objects.india)));
