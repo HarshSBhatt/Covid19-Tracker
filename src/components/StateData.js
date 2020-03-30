@@ -95,7 +95,7 @@ function StateData(props) {
                 })} */
     return (
         <React.Fragment>
-            <div style={{ animationDelay: '0.5s' }}>
+            <div style={{ animationDelay: '0.3s' }}>
                 <div className="header-mid">
                     <h1>COVID19 Tracker</h1>
                     <div className="last-update">

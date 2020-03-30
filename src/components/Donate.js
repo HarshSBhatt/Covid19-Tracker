@@ -3,7 +3,7 @@ import React from 'react'
 function Donate() {
     return (
         <div className='covid19-donation'>
-            Donate
+            Just Kidding
         </div>
     )
 }

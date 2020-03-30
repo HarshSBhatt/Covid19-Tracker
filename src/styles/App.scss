@@ -27,6 +27,13 @@
 		transform: translateX(0px);
 	}
 }
+
+$header: #282c34;
+$blue: #007bff;
+$cherry: #ff073a;
+$green: #28a745;
+$gray: #6c757d;
+
 h1,
 h2,
 h3,
@@ -42,6 +49,7 @@ text,
 th {
 	font-family: 'Poppins', sans-serif !important;
 	text-transform: uppercase !important;
+	color:$header;
 }
 text {
 	font-size: 15px;
@@ -87,11 +95,7 @@ text {
 		transform: rotate(360deg);
 	}
 }
-$header: #282c34;
-$blue: #007bff;
-$cherry: #ff073a;
-$green: #28a745;
-$gray: #6c757d;
+
 
 @mixin navbarReveal($color) {
 	$animation-name: unique-id() !global;
@@ -547,7 +551,7 @@ th {
 .analysis_state {
 	padding-bottom: 0;
 }
-.err404 {
+.err404,.covid19-donation {
 	padding-top: 5.5rem;
 	height: 800px;
 	display: flex;

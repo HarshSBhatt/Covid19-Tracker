@@ -4,7 +4,6 @@ import Home from './Home'
 import Donate from './Donate'
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ReactGA from 'react-ga';
-import Footer from './Footer';
 import PageNotFound from './PageNotFound';
 
 function App() {
