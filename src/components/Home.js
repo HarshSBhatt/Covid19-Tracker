@@ -5,7 +5,6 @@ import StateData from './StateData';
 import axios from 'axios';
 import Visualization from './Visualization';
 import Loader from './Loader';
-import ReactGA from 'react-ga';
 
 function App() {
     const [stateData, setStateData] = useState([]);
@@ -25,8 +24,6 @@ function App() {
     }, [loading]);
     useEffect(
         () => {
-            ReactGA.initialize('UA-162207556-1');
-            ReactGA.pageview(window.location.pathname + window.location.search);
             if (fetched === false) {
                 getStates();
             }
@@ -55,19 +52,21 @@ function App() {
 
     if (loading) return <Loader />;
     return (
-        <div className="App">
-            <div className="home" style={{ padding: 24 }}>
-                <div className="left anim">
-                    <StateData update={lastUpdated} stateData={stateData} deltas={deltas} />
+        <React.Fragment>
+            <div className="covid19app">
+                <div className="home" style={{ padding: 24 }}>
+                    <div className="left anim">
+                        <StateData update={lastUpdated} stateData={stateData} deltas={deltas} />
+                    </div>
+                    <div className="right anim">
+                        <IndiaMap states={stateData} />
+                    </div>
                 </div>
-                <div className="right anim">
-                    <IndiaMap states={stateData} />
+                <div className="visualize">
+                    <Visualization timeSeries={timeSeries} stateData={stateData} />
                 </div>
             </div>
-            <div className="visualize">
-                <Visualization timeSeries={timeSeries} stateData={stateData} />
-            </div>
-        </div>
+        </React.Fragment>
     );
 }
 

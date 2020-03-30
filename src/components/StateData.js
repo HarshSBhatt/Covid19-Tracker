@@ -61,11 +61,14 @@ function StateData(props) {
     let h = 0;
     let am_pm = 'AM';
     let format = update.slice(11, 13);
-    if (parseInt(format) > 12) {
-        h = format - 12;
-        am_pm = 'PM';
+    if (parseInt(format) >= 12) {
+        am_pm = 'PM'
+        if (parseInt(format) >= 13) {
+            h = format - 12;
+        }
+        h = parseInt(format)
     } else {
-        h = format;
+        h = parseInt(format);
         am_pm = 'AM';
     }
 

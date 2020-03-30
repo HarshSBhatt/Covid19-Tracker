@@ -13,20 +13,17 @@ function Visualization(props) {
     timeSeries.length && timeSeries.forEach((day) => {
         dayToDay.push([day.date.slice(0, 6), parseInt(day.dailyconfirmed), parseInt(day.dailyrecovered), parseInt(day.dailydeceased)])
         dayTotal.push([day.date.slice(0, 6), parseInt(day.totalconfirmed), parseInt(day.totalrecovered), parseInt(day.totaldeceased)])
-        console.log(day.totalconfirmed)
     })
     stateAnalysis.push(['State', 'Confirmed', 'Recovered', 'Deaths'])
     stateData && stateData.forEach((state, index) => {
-        if (index != 0 && parseInt(state.confirmed) !== 0 && index < 11) {
+        if (index !== 0 && parseInt(state.confirmed) !== 0 && index < 11) {
             stateAnalysis.push([state.state, parseInt(state.confirmed), parseInt(state.recovered), parseInt(state.deaths)])
         }
     })
-    console.log(stateAnalysis)
     return (
         <React.Fragment>
             <h1 className='chart'>Events Information</h1>
             <h3 className='note'>Interact with graph for more information</h3>
-            {console.log(window.innerWidth)}
             {window.innerWidth <= 768 ? <h3>Rotate your screen for better experience</h3> : null}
             <div>
                 <Chart
