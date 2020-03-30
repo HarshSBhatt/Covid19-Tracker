@@ -1,11 +1,13 @@
 import React from 'react';
 import { Table } from 'antd';
 import Text from 'antd/lib/typography/Text';
+import { MDBDataTable } from 'mdbreact';
 
 function StateData(props) {
     const { update, stateData, deltas } = props;
     const obj = [];
     const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
     const columns = [
         {
             title: 'States',
@@ -72,15 +74,54 @@ function StateData(props) {
     stateData && stateData.forEach((state, index) => {
         if (index !== 0 && parseInt(state.confirmed) > 0) {
             obj.push({
-                key: `${index}`,
                 state: state.state,
-                confirmed: parseInt(state.confirmed),
-                active: parseInt(state.active),
-                recovered: parseInt(state.recovered),
-                deaths: parseInt(state.deaths)
+                confirmed: state.confirmed,
+                active: state.active,
+                recovered: state.recovered,
+                deaths: state.deaths
             })
         }
     })
+    // const data = {
+    //     columns: [
+    //         {
+    //             label: 'States',
+    //             field: 'state',
+    //             sort: 'asc'
+    //             // className: 'state',
+    //             // width: 120
+    //         },
+    //         {
+    //             label: window.innerWidth <= 768 ? 'C' : 'Confirmed',
+    //             field: 'confirmed',
+    //             sort: 'desc'
+    //             // className: 'content',
+    //             // sorter: (a, b) => a.confirmed - b.confirmed
+    //         },
+    //         {
+    //             label: window.innerWidth <= 768 ? 'A' : 'Active',
+    //             field: 'active',
+    //             sort: 'asc'
+    //             // className: 'content',
+    //             // sorter: (a, b) => a.active - b.active
+    //         },
+    //         {
+    //             label: window.innerWidth <= 768 ? 'R' : 'Recovered',
+    //             field: 'recovered',
+    //             sort: 'asc'
+    //             // className: 'content',
+    //             // sorter: (a, b) => a.recovered - b.recovered
+    //         },
+    //         {
+    //             label: window.innerWidth <= 768 ? 'D' : 'Deaths',
+    //             label: 'deaths',
+    //             sort: 'asc'
+    //             // key: 'deaths',
+    //             // className: 'content',
+    //             // sorter: (a, b) => a.deaths - b.deaths
+    //         }
+    //     ], rows: obj
+    // }
     /* {Object.keys(stateData).forEach((val, index) => {
                     if (stateData[val].confirmed > 0 && val > 0) {
                         obj.push({
@@ -159,7 +200,6 @@ function StateData(props) {
                                 <h1 className="title has-text-success">{stateData[0] && stateData[0].recovered}</h1>
                             </div>
                         </div>
-
                         <div className="level-item is-dead">
                             <h5 className="heading">Deaths</h5>
                             <div>
@@ -177,6 +217,7 @@ function StateData(props) {
                         </div>
                     </div>
                     <div className="table">
+                        {/* <MDBDataTable striped bordered small order={['confirmed', 'desc']} data={data} /> */}
                         <Table
                             size="small"
                             pagination={false}
