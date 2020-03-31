@@ -82,7 +82,7 @@ function IndiaMap(props) {
         const promises = [d3.json('/india.json')];
         Promise.all(promises).then(ready);
         function ready([india]) {
-            states && states.forEach((state, index) => {
+            states && states.forEach((state) => {
                 unemployment.set(state.state.toLowerCase(), state.confirmed);
             });
             svg

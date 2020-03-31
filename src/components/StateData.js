@@ -3,7 +3,7 @@ import { ArrowUpOutlined } from '@ant-design/icons';
 import { Table } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import Moment from 'react-moment';
-import CountUp from 'react-countup';
+// import CountUp from 'react-countup';
 
 function StateData(props) {
     const { update, stateData, deltas } = props;
