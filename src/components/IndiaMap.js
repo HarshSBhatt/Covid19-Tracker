@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 
+
 function IndiaMap(props) {
+
     const [states, setStates] = useState(props.states);
     const [state, setState] = useState({});
     const [statistic, setStatistic] = useState({});
     const [index, setIndex] = useState(1);
     const choroplethMap = useRef(null);
-
     useEffect(
         () => {
             if (props.states.length > 1 && choroplethMap.current) {
@@ -37,6 +38,7 @@ function IndiaMap(props) {
                     maxConfirmed: maxConfirmed,
                     minConfirmed: minConfirmed
                 });
+
             }
         },
         [states.length]
@@ -45,10 +47,10 @@ function IndiaMap(props) {
     useEffect(
         () => {
             setStates(props.states);
+
         },
         [props.states]
     );
-
     const handleMouseover = (name) => {
         states.forEach((state, index) => {
             if (state.state.toLowerCase() === name.toLowerCase()) {
@@ -72,7 +74,7 @@ function IndiaMap(props) {
             .scaleQuantile()
             .domain(
                 states.map(function (d) {
-                    return d.confirmed / buckets * statistic.maxConfirmed * 0.05;
+                    return d.confirmed / buckets * statistic.maxConfirmed * 0.06;
                 })
             )
             .range(colors);

@@ -1,12 +1,13 @@
 import React from 'react'
 import { Chart } from "react-google-charts";
-import { window } from 'd3';
 
 function Visualization(props) {
+
     const { timeSeries, stateData } = props
     const dayToDay = []
     const dayTotal = []
     const stateAnalysis = []
+
     dayTotal.push(['Date', 'Confirmed', 'Recovered', 'Deaths'])
     dayToDay.push(['Date', 'New Positive Cases', 'Recovered', 'Deaths'])
     // console.log(timeSeries)
@@ -24,7 +25,7 @@ function Visualization(props) {
         <React.Fragment>
             <h1 className='chart'>Visualized Information</h1>
             <h3 className='note'>Interact with graph for more information</h3>
-            {window.innerWidth <= 768 ? <h3>Rotate your screen for better experience</h3> : null}
+            {window.innerWidth <= 768 ? <h3 className='note'>Rotate your screen for better experience</h3> : null}
             <div>
                 <Chart
                     width="100%"
@@ -40,7 +41,7 @@ function Visualization(props) {
                         // animation: {
                         //     startup: true,
                         //     easing: 'linear',
-                        //     duration: 1000,
+                        //     duration: 2000,
                         // },
                         legend: { position: 'top' },
                         // For the legend to fit, we make the chart area smaller
@@ -66,7 +67,7 @@ function Visualization(props) {
                         // animation: {
                         //     startup: true,
                         //     easing: 'linear',
-                        //     duration: 1000,
+                        //     duration: 2000,
                         // },
                         legend: { position: 'top' },
                         // For the legend to fit, we make the chart area smaller
@@ -93,7 +94,7 @@ function Visualization(props) {
                         // animation: {
                         //     startup: true,
                         //     easing: 'linear',
-                        //     duration: 1000,
+                        //     duration: 2000,
                         // },
                         hAxis: {
                             title: 'Number of Cases',

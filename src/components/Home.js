@@ -6,6 +6,7 @@ import Visualization from './Visualization';
 import axios from 'axios';
 import Loader from './Loader';
 import Footer from './Footer';
+import Stats from './Stats';
 
 function App() {
     const [stateData, setStateData] = useState([]);
@@ -62,6 +63,9 @@ function App() {
                     <div className="right anim">
                         <IndiaMap states={stateData} />
                     </div>
+                </div>
+                <div>
+                    <Stats stateData={stateData} />
                 </div>
                 <div className="visualize">
                     <Visualization timeSeries={timeSeries} stateData={stateData} />
