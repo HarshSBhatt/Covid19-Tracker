@@ -98,7 +98,12 @@ $gray: #6c757d;
 		}
 	}
 }
-
+.tips {
+	font-size: 10px !important;
+	font-weight: bolder;
+	letter-spacing: 2px;
+	padding: 10px 0;
+}
 h1,
 h2,
 h3,
@@ -508,6 +513,7 @@ th {
 		padding-bottom: 30px;
 		margin: 0 9rem;
 		letter-spacing: 2px;
+		font-size: 8px !important;
 	}
 }
 .footer-content {
@@ -579,12 +585,7 @@ th {
 		margin: 0;
 		padding: 0 10px !important;
 		padding-bottom: 50px !important;
-		.tips {
-			font-size: 10px !important;
-			font-weight: bolder;
-			letter-spacing: 2px;
-			padding: 10px 0;
-		}
+		
 		h1 {
 			font-size: 20px !important;
 		}

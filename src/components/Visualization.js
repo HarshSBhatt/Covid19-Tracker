@@ -1,8 +1,8 @@
 import React from 'react'
 import { Chart } from "react-google-charts";
+import { Spin } from 'antd';
 
 function Visualization(props) {
-
     const { timeSeries, stateData } = props
     const dayToDay = []
     const dayTotal = []
@@ -31,7 +31,7 @@ function Visualization(props) {
                     width="100%"
                     height={'450px'}
                     chartType="LineChart"
-                    loader={<div>Loading Chart</div>}
+                    loader={<Spin style={{ marginLeft: '35%' }} tip="Loading Chart" />}
                     data={dayToDay}
                     options={{
                         title: 'Daywise Information',
@@ -57,7 +57,7 @@ function Visualization(props) {
                     width="100%"
                     height={'450px'}
                     chartType="AreaChart"
-                    loader={<div>Loading Chart</div>}
+                    loader={<Spin style={{ marginLeft: '35%' }} tip="Loading Chart" />}
                     data={dayTotal}
                     options={{
                         title: 'Trend of Covid19',
@@ -83,7 +83,7 @@ function Visualization(props) {
                     width="100%"
                     height={"450px"}
                     chartType="BarChart"
-                    loader={<div>Loading Chart</div>}
+                    loader={<Spin style={{ marginLeft: '35%' }} tip="Loading Chart" />}
                     data={stateAnalysis}
                     options={{
                         title: 'Top 10 states affected by Corona Virus',

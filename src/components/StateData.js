@@ -82,7 +82,7 @@ function StateData(props) {
         <React.Fragment>
             <div style={{ animationDelay: '0.3s' }}>
                 <div className="header-mid">
-                    <h1>COVID19 Tracker</h1>
+                    <h1>India COVID19 Tracker</h1>
                     <div className="last-update">
                         <h3>Last Updated: </h3>
                         <h3>
@@ -211,6 +211,7 @@ function StateData(props) {
                     </div>
                     <div className="new-cases">
                         <h1>Today's New Cases</h1>
+                        {window.innerWidth <= 768 ? <h3 className='tips'>C: Confirmed | A: Active | R: Recovered | D: Deaths</h3> : null}
                         <Table
                             size="small"
                             pagination={false}
