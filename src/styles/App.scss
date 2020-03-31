@@ -99,7 +99,7 @@ $gray: #6c757d;
 	}
 }
 .tips {
-	font-size: 10px !important;
+	font-size: 9px !important;
 	font-weight: bolder;
 	letter-spacing: 2px;
 	padding: 10px 0;
@@ -505,7 +505,6 @@ th {
 		}
 	}
 }
-
 .visualize {
 	padding-top: 2.5rem;
 	.chart,
@@ -513,7 +512,6 @@ th {
 		padding-bottom: 30px;
 		margin: 0 9rem;
 		letter-spacing: 2px;
-		font-size: 8px !important;
 	}
 }
 .footer-content {
@@ -544,6 +542,9 @@ th {
 	.note,
 	.chart {
 		margin: 0 1rem !important;
+	}
+	.note{
+		font-size: 5px !important;
 	}
 	.bunch-of-card {
 		padding: 15px 0px;
@@ -607,7 +608,7 @@ th {
 			margin: 0 1rem;
 		}
 		.note {
-			font-size: 11.5px !important;
+			font-size: 10px !important;
 		}
 	}
 	text {
