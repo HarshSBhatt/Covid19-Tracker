@@ -2,35 +2,30 @@ import React from 'react';
 import { ArrowUpOutlined } from '@ant-design/icons';
 import { Table } from 'antd';
 import Text from 'antd/lib/typography/Text';
+import Moment from 'react-moment';
+import CountUp from 'react-countup';
+
 function StateData(props) {
     const { update, stateData, deltas } = props;
-    const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
     const time = update.split('/');
+
     const date = time && time[0];
-    const mon = time && month[parseInt(time[1])];
+    const mon = time[1];
     const year = update.slice(6, 10);
-    let ss = '';
-    if (date === '1') {
-        ss = 'st';
-    } else if (date === '2') {
-        ss = 'nd';
-    } else if (date === '3') {
-        ss = 'rd';
-    } else {
-        ss = 'th';
-    }
-    let h = 0;
-    let am_pm = 'AM';
+    let hr = time[2].slice(5, 7);
+    const min = time[2].slice(8, 10);
     let format = update.slice(11, 13);
     if (parseInt(format) >= 13) {
-        h = parseInt(format) - 12;
+        hr = parseInt(format) - 12;
     } else {
-        h = parseInt(format);
+        hr = parseInt(format);
     }
-    if (parseInt(format) >= 12) {
-        am_pm = 'PM';
+    if (hr < 10) {
+        hr = `0${hr}`;
     }
+    const str = `${year}-${mon}-${date}T${hr}:${min}-0630`;
+    // console.log(str)
+
     const stateCase = [];
     const columns = [
         {
@@ -91,10 +86,7 @@ function StateData(props) {
                     <div className="last-update">
                         <h3>Last Updated: </h3>
                         <h3>
-                            {date}
-                            <sup>{ss}</sup>
-                            {` ${mon}, ${year} at ${h}`}
-                            {update.slice(13)} {am_pm}
+                            About  <Moment fromNow>{str}</Moment>
                         </h3>
                     </div>
                     <div className="bunch-of-card anim">
@@ -161,7 +153,7 @@ function StateData(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="bunch-of-card">
+                    <div className="bunch-of-card anim">
                         <div className="card-wrapper">
                             <div className="card">
                                 <div>
@@ -217,7 +209,7 @@ function StateData(props) {
                             </div>
                         </div>
                     </div>
-                    <div className='new-cases'>
+                    <div className="new-cases">
                         <h1>Today's New Cases</h1>
                         <Table
                             size="small"
@@ -231,7 +223,9 @@ function StateData(props) {
                                         <tr className="footer-content">
                                             <th>Total</th>
                                             <td>
-                                                <Text type="danger">{stateData[0] && stateData[0].delta.confirmed}</Text>
+                                                <Text type="danger">
+                                                    {stateData[0] && stateData[0].delta.confirmed}
+                                                </Text>
                                             </td>
                                             <td>
                                                 <Text>{stateData[0] && stateData[0].delta.active}</Text>

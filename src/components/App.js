@@ -7,6 +7,7 @@ import ReactGA from 'react-ga';
 import PageNotFound from './PageNotFound';
 import { Helmet } from 'react-helmet'
 import Navigation from './Navigation';
+import CoronaBlog from './CoronaBlog';
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/donate' exact component={Donate} />
+          <Route path='/about-corona' component={CoronaBlog} />
           <Route component={PageNotFound} />
         </Switch>
       </div>

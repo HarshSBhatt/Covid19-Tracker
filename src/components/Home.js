@@ -26,6 +26,7 @@ function App() {
     // }, [loading]);
     useEffect(
         () => {
+            window.scroll(0, 0)
             if (fetched === false) {
                 getStates();
             }

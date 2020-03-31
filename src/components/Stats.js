@@ -23,7 +23,7 @@ function Stats(props) {
             dataIndex: 'state',
             key: 'state',
             className: 'state',
-            width: window.innerWidth <= 768 ? 120 : 200
+            width: window.innerWidth <= 768 ? 120 : 300
         },
         {
             title: window.innerWidth <= 768 ? 'C' : 'Confirmed',
