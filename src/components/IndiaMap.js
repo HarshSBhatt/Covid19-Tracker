@@ -73,7 +73,7 @@ function IndiaMap(props) {
         const colorScale = d3
             .scaleQuantile()
             .domain(
-                states.map(function (d) {
+                states && states.map(function (d) {
                     return d.confirmed / buckets * statistic.maxConfirmed * 0.05;
                 })
             )
@@ -210,8 +210,8 @@ function IndiaMap(props) {
                     className='anim'
                     id="chart"
                     width={window.innerWidth < 768 ? 400 : 580}
-                    height={window.innerWidth < 768 ? 550 : 680}
-                    viewBox={`0 0 680 ${window.innerWidth < 479 ? 500 : 680}`}
+                    height={window.innerWidth < 768 ? 550 : 640}
+                    viewBox={`0 0 680 ${window.innerWidth < 479 ? 500 : 640}`}
                     preserveAspectRatio="xMidYMid meet"
                     ref={choroplethMap}
                 />

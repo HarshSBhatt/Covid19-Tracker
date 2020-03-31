@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Tabs, Radio } from 'antd';
+import { Tabs } from 'antd';
 import Helmet from 'react-helmet';
 import Footer from './Footer';
 const { TabPane } = Tabs;
@@ -13,7 +13,7 @@ function CoronaBlog() {
             <div className="about_corona animY">
                 <Helmet>
                     <meta charSet="UTF-8" />
-                    <title>What is Coronavirus</title>
+                    <title>Stay Home, Stay Safe!</title>
                     <meta name="description" content="Novel Coronavirus Tracker" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                 </Helmet>
