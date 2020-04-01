@@ -519,6 +519,31 @@ th {
 		padding: 8px !important;
 	}
 }
+
+.covid19-donation {
+	padding-top: 5.5rem;
+}
+.analysis_state {
+	padding-bottom: 0;
+}
+.err404,
+.covid19-donation {
+	padding-top: 5.5rem;
+	height: 800px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 100px;
+	font-weight: bolder;
+	letter-spacing: 10px;
+	text-align: center;
+	a {
+		font-size: 15px;
+		letter-spacing: 5px;
+	}
+}
+
 @media (max-width: 1024px) {
 	.note,
 	.chart {
@@ -528,7 +553,36 @@ th {
 		font-size: 14px;
 	}
 }
+
+.footer {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	background-color: $header;
+	height: 10rem;
+	font-size: 25px;
+	letter-spacing: 5px;
+	color: white;
+	h3,
+	p {
+		padding: 15px 0;
+		color: white;
+	}
+	p {
+		font-size: 12px !important;
+		text-align: center;
+	}
+}
 @media (max-width: 768px) {
+	.footer {
+		p {
+			font-size: 8px !important;
+			padding: 0 10px;
+			letter-spacing: 1px;
+		}
+	}
+
 	.ChoroplethMap {
 		height: 670px;
 	}
@@ -767,41 +821,5 @@ th {
 	td,
 	th {
 		font-size: 8px;
-	}
-}
-.covid19-donation {
-	padding-top: 5.5rem;
-}
-.footer {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: $header;
-	height: 10rem;
-	font-size: 25px;
-	letter-spacing: 5px;
-	color: white;
-	h3 {
-		color: white;
-	}
-}
-.analysis_state {
-	padding-bottom: 0;
-}
-.err404,
-.covid19-donation {
-	padding-top: 5.5rem;
-	height: 800px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	font-size: 100px;
-	font-weight: bolder;
-	letter-spacing: 10px;
-	text-align: center;
-	a {
-		font-size: 15px;
-		letter-spacing: 5px;
 	}
 }
