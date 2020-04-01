@@ -508,10 +508,15 @@ th {
 .visualize {
 	padding-top: 2.5rem;
 	.chart,
-	.note {
+	.note,
+	.dateGraph {
 		padding-bottom: 30px;
 		margin: 0 9rem;
 		letter-spacing: 2px;
+	}
+	.dateGraph {
+		font-size: 20px !important;
+		font-weight: bolder;
 	}
 }
 .footer-content {
@@ -546,7 +551,8 @@ th {
 
 @media (max-width: 1024px) {
 	.note,
-	.chart {
+	.chart,
+	.dateGraph {
 		margin: 0 6rem !important;
 	}
 	text {
@@ -597,7 +603,8 @@ th {
 		padding: 25px 0;
 	}
 	.note,
-	.chart {
+	.chart,
+	.dateGraph {
 		margin: 0 1rem !important;
 	}
 	.note {
@@ -661,7 +668,8 @@ th {
 	.visualize {
 		padding-top: 0;
 		.chart,
-		.note {
+		.note,
+		.dateGraph {
 			margin: 0 1rem;
 		}
 		.note {

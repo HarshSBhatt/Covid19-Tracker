@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowUpOutlined } from '@ant-design/icons';
-import { Table } from 'antd';
+import { Table, Empty } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import Moment from 'react-moment';
 // import CountUp from 'react-countup';
@@ -219,6 +219,7 @@ function StateData(props) {
                             pagination={false}
                             columns={columns}
                             dataSource={stateCase}
+                            locale={{ emptyText: <Empty description={<span>Today's data is yet to be updated</span>} /> }}
                             scroll={{ y: 220 }}
                             summary={() => {
                                 return (

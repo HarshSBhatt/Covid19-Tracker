@@ -7,7 +7,6 @@ function Visualization(props) {
     const dayToDay = []
     const dayTotal = []
     const stateAnalysis = []
-
     dayTotal.push(['Date', 'Confirmed', 'Recovered', 'Deaths'])
     dayToDay.push(['Date', 'New Positive Cases', 'Recovered', 'Deaths'])
     // console.log(timeSeries)
@@ -24,6 +23,7 @@ function Visualization(props) {
     return (
         <React.Fragment>
             <h1 className='chart'>Visualized Information</h1>
+            <h3 className='dateGraph'>As of {timeSeries[timeSeries.length - 1].date}</h3>
             <h3 className='note'>Interact with graph for more information</h3>
             {window.innerWidth <= 768 ? <h3 className='note'>Rotate your screen for better experience</h3> : null}
             <div>
