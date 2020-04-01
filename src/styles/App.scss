@@ -1,6 +1,8 @@
 @import '~antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-
+tspan{
+	font-size: 13px !important;
+}
 .center {
 	position: absolute;
 	top: 50%;
@@ -48,6 +50,53 @@ $blue: #007bff;
 $cherry: #ff073a;
 $green: #28a745;
 $gray: #6c757d;
+.bar_chart{
+	display: flex;
+	justify-content: center;
+}
+.chart-wrapper {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 60px;
+	
+	.wid {
+		width: 50%;
+		padding: 15px;
+		h1,p{
+		text-align: left;
+		}
+	}
+	.case_rates {
+		// margin: 2.5rem 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center !important;
+		justify-content: space-evenly;
+		.card-wrapper {
+			cursor: pointer;
+			margin: 25px 0;
+			border-radius: 10px;
+			background-color: $header;
+			padding: 40px 20px;
+			width: 300px;
+			-webkit-box-shadow: 0 3px 5px rgba(32, 33, 36, 0.5);
+			-moz-box-shadow: 0 3px 5px rgba(32, 33, 36, 0.5);
+			box-shadow: 0 3px 5px rgba(32, 33, 36, 0.5);
+			&:hover{
+				transform: scale(1.1);
+				transition: 0.8s;
+			}
+			// padding: 50px;
+			.card {
+				div {
+					h1 {
+						color: white;
+					}
+				}
+			}
+		}
+	}
+}
 
 .bunch-of-card {
 	display: flex;
@@ -550,6 +599,11 @@ th {
 }
 
 @media (max-width: 1024px) {
+	.Navbar {
+		a{
+			font-size: 15px;
+		}
+	}
 	.note,
 	.chart,
 	.dateGraph {
@@ -557,6 +611,13 @@ th {
 	}
 	text {
 		font-size: 14px;
+	}
+	.case_rates{
+		align-items: flex-start !important;
+		margin: 2.5rem 0;
+	}
+	.chart-wrapper{
+		margin: 0;
 	}
 }
 
@@ -580,7 +641,60 @@ th {
 		text-align: center;
 	}
 }
+.title_chart{
+	// margin: 2rem 8rem;
+	text-align: center;
+	margin: 3rem 0;
+}
 @media (max-width: 768px) {
+	.wid{
+		h1{
+		text-align: center !important;
+		}
+	}
+	.text_slc{
+		h1,p{
+			text-align: center !important;
+		}
+		h1{
+			font-size: 18px !important;
+		}
+		p{
+			font-size: 10px !important;
+			padding: 10px 0;
+		}
+	}
+	tspan{
+		font-size: 9px !important;
+	}
+	.bar_chart{
+		transform: translate(-20px, 0);
+	}
+	.chart-wrapper {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		padding: 10px;
+		.wid {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.case_rates {
+			
+			.card-wrapper {
+				padding: 30px 20px;
+				.card {
+					div {
+						h1 {
+							color: white;
+						}
+					}
+				}
+			}
+		}
+	}
 	.footer {
 		p {
 			font-size: 8px !important;
@@ -747,13 +861,13 @@ th {
 		}
 	}
 	.Navbar {
-		a{
+		a {
 			width: 20%;
 		}
 		.link {
 			width: 80%;
 			justify-content: flex-end;
-			li{
+			li {
 				margin: 0 10px;
 			}
 			a {

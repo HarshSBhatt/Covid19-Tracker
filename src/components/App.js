@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import '../styles/App.scss';
 import Home from './Home'
 import Donate from './Donate'

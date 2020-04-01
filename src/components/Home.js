@@ -55,6 +55,8 @@ function App() {
     if (loading) return <Loader />;
     return (
         <React.Fragment>
+
+
             <div className="covid19app">
                 <div className="home" style={{ padding: 24 }}>
                     <div className="left anim">

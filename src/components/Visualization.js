@@ -1,114 +1,111 @@
-import React from 'react'
-import { Chart } from "react-google-charts";
-import { Spin } from 'antd';
+import React from 'react';
+import SLC from './charts/SLC';
+import SBC from './charts/SBC';
+import LC from './charts/LC';
 
 function Visualization(props) {
-    const { timeSeries, stateData } = props
-    const dayToDay = []
-    const dayTotal = []
-    const stateAnalysis = []
-    dayTotal.push(['Date', 'Confirmed', 'Recovered', 'Deaths'])
-    dayToDay.push(['Date', 'New Positive Cases', 'Recovered', 'Deaths'])
-    // console.log(timeSeries)
-    timeSeries.length && timeSeries.forEach((day) => {
-        dayToDay.push([day.date.slice(0, 6), parseInt(day.dailyconfirmed), parseInt(day.dailyrecovered), parseInt(day.dailydeceased)])
-        dayTotal.push([day.date.slice(0, 6), parseInt(day.totalconfirmed), parseInt(day.totalrecovered), parseInt(day.totaldeceased)])
-    })
-    stateAnalysis.push(['State', 'Confirmed', 'Recovered', 'Deaths'])
-    stateData && stateData.forEach((state, index) => {
-        if (index !== 0 && parseInt(state.confirmed) !== 0 && index < 11) {
-            stateAnalysis.push([state.state, parseInt(state.confirmed), parseInt(state.recovered), parseInt(state.deaths)])
+    const { timeSeries, stateData } = props;
+    const dayTotal = [];
+    const stateAnalysis = [];
+    timeSeries.length &&
+        timeSeries.forEach((day) => {
+            dayTotal.push({
+                date: day.date.slice(0, 6),
+                confirmed: parseInt(day.dailyconfirmed),
+                recovered: parseInt(day.dailyrecovered),
+                deaths: parseInt(day.dailydeceased)
+            });
+        });
+
+    const totalCases = [];
+    timeSeries.length &&
+        timeSeries.forEach((day) => {
+            totalCases.push({
+                date: day.date.slice(0, 6),
+                confirmed: parseInt(day.totalconfirmed),
+                recovered: parseInt(day.totalrecovered),
+                deaths: parseInt(day.totaldeceased)
+            });
+        });
+    stateData &&
+        stateData.forEach((state, index) => {
+            if (index !== 0 && parseInt(state.confirmed) !== 0) {
+                stateAnalysis.push({
+                    state: state.state,
+                    abbr: state.state.slice(0, 3),
+                    active: parseInt(state.active),
+                    recovered: parseInt(state.recovered),
+                    deaths: parseInt(state.deaths),
+                    confirmed: parseInt(state.confirmed)
+                });
+            }
+        });
+
+    function compare(a, b) {
+        const bandA = a.confirmed;
+        const bandB = b.confirmed;
+
+        let comparison = 0;
+        if (bandA < bandB) {
+            comparison = 1;
+        } else if (bandA > bandB) {
+            comparison = -1;
         }
-    })
+        return comparison;
+    }
+    stateAnalysis.sort(compare);
+    const top10 = [...stateAnalysis.slice(0, 11)]
     return (
         <React.Fragment>
-            <h1 className='chart'>Visualized Information</h1>
-            <h3 className='dateGraph'>As of {timeSeries[timeSeries.length - 1].date}</h3>
-            <h3 className='note'>Interact with graph for more information</h3>
-            {window.innerWidth <= 768 ? <h3 className='note'>Rotate your screen for better experience</h3> : null}
-            <div>
-                <Chart
-                    width="100%"
-                    height={'450px'}
-                    chartType="LineChart"
-                    loader={<Spin style={{ marginLeft: '35%' }} tip="Loading Chart" />}
-                    data={dayToDay}
-                    options={{
-                        title: 'Daywise Information',
-                        hAxis: { title: 'Date', titleTextStyle: { color: '#333' } },
-                        vAxis: { title: 'Number of Cases', minValue: 0 },
-                        colors: ['#ff073a', '#28a745', '#6c757d'],
-                        // animation: {
-                        //     startup: true,
-                        //     easing: 'linear',
-                        //     duration: 2000,
-                        // },
-                        legend: { position: 'top' },
-                        // For the legend to fit, we make the chart area smaller
-                        chartArea: { width: '80%', height: '70%' },
-                        // lineWidth: 25
-                    }}
-                    // For tests
-                    rootProps={{ 'data-testid': '1' }}
-                />
+            <h1 className="chart">Visualized Information</h1>
+            <h3 className="dateGraph">As of {timeSeries[timeSeries.length - 1].date}</h3>
+            <div className="chart-wrapper">
+                <div className="case_rates wid">
+                    <div className="card-wrapper">
+                        <div className="card">
+                            <div>
+                                <h1>Active Cases</h1>
+                            </div>
+                            <div>
+                                <h1>{stateData && (stateData[0].active / stateData[0].confirmed * 100).toFixed(2)}%</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card-wrapper">
+                        <div className="card">
+                            <div>
+                                <h1>Recovery Rate</h1>
+                            </div>
+                            <div>
+                                <h1>{stateData && (stateData[0].recovered / stateData[0].confirmed * 100).toFixed(2)}%</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card-wrapper">
+                        <div className="card">
+                            <div>
+                                <h1>Death Rate</h1>
+                            </div>
+                            <div>
+                                <h1>{stateData && (stateData[0].deaths / stateData[0].confirmed * 100).toFixed(2)}%</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='wid text_slc'>
+                    <SLC totalCases={totalCases} />
+                </div>
             </div>
-            <div>
-                <Chart
-                    width="100%"
-                    height={'450px'}
-                    chartType="AreaChart"
-                    loader={<Spin style={{ marginLeft: '35%' }} tip="Loading Chart" />}
-                    data={dayTotal}
-                    options={{
-                        title: 'Trend of Covid19',
-                        hAxis: { title: 'Date', titleTextStyle: { color: '#333' } },
-                        vAxis: { title: 'Number of Cases', minValue: 0 },
-                        colors: ['#ff073a', '#28a745', '#6c757d'],
-                        // animation: {
-                        //     startup: true,
-                        //     easing: 'linear',
-                        //     duration: 2000,
-                        // },
-                        legend: { position: 'top' },
-                        // For the legend to fit, we make the chart area smaller
-                        chartArea: { width: '80%', height: '70%' },
-                        // lineWidth: 25
-                    }}
-                    // For tests
-                    rootProps={{ 'data-testid': '2' }}
-                />
+            <h1 className='title_chart'>Daywise Information</h1>
+            <div className='bar_chart'>
+                <LC dayTotal={dayTotal} />
             </div>
-            <div>
-                <Chart
-                    width="100%"
-                    height={"450px"}
-                    chartType="BarChart"
-                    loader={<Spin style={{ marginLeft: '35%' }} tip="Loading Chart" />}
-                    data={stateAnalysis}
-                    options={{
-                        title: 'Top 10 states affected by Corona Virus',
-                        chartArea: { width: '80%' },
-                        isStacked: true,
-                        // height: 700,
-                        colors: ['#3366cc', '#ff9900', '#dc3912'],
-                        // animation: {
-                        //     startup: true,
-                        //     easing: 'linear',
-                        //     duration: 2000,
-                        // },
-                        hAxis: {
-                            title: 'Number of Cases',
-                            minValue: 0,
-                        },
-                        bar: { groupWidth: '70%' },
-                        legend: { position: 'top' },
-                    }}
-                    // For tests
-                    rootProps={{ 'data-testid': '3' }}
-                />
+            <h1 className='title_chart'>Top 10 States affected by Corona Virus</h1>
+            <div className='bar_chart'>
+                <SBC top10={top10} />
             </div>
         </React.Fragment>
-    )
+    );
 }
 
-export default Visualization
+export default Visualization;

@@ -30,6 +30,7 @@ function Stats(props) {
             dataIndex: 'confirmed',
             key: 'confirmed',
             className: 'content',
+            defaultSortOrder: 'descend',
             sorter: (a, b) => a.confirmed - b.confirmed
         },
         {
