@@ -14,16 +14,18 @@ function StateData(props) {
     const year = update.slice(6, 10);
     let hr = time[2].slice(5, 7);
     const min = time[2].slice(8, 10);
-    let format = update.slice(11, 13);
-    if (parseInt(format) >= 13) {
-        hr = parseInt(format) - 12;
-    } else {
-        hr = parseInt(format);
-    }
-    if (hr < 10) {
-        hr = `0${hr}`;
-    }
-    const str = `${year}-${mon}-${date}T${hr}:${min}-0630`;
+    // let format = update.slice(11, 13);
+    // if (parseInt(format) >= 13) {
+    //     hr = parseInt(format) - 12;
+    // } else {
+    //     hr = parseInt(format);
+    // }
+    // if (hr < 10) {
+    //     hr = `0${hr}`;
+    // }
+    const str = `${year}-${mon}-${date}T${hr}:${min}+0530`;
+    // const dateToFormat = new Date('1976-04-19T12:59-0500');
+
     // console.log(str)
 
     const stateCase = [];
@@ -86,7 +88,7 @@ function StateData(props) {
                     <div className="last-update">
                         <h3>Last Updated: </h3>
                         <h3>
-                            About  <Moment fromNow>{str}</Moment>
+                            About <Moment fromNow>{str}</Moment>
                         </h3>
                     </div>
                     <div className="bunch-of-card anim">
@@ -110,7 +112,7 @@ function StateData(props) {
 									</h4>
                                     <h4>
                                         <ArrowUpOutlined />{' '}
-                                        {(deltas.confirmeddelta / stateData[0].confirmed * 100).toFixed(2)}
+                                        {(deltas.confirmeddelta / (stateData[0].confirmed - deltas.confirmeddelta) * 100).toFixed(2)}
                                         {'% '}
 										today
 									</h4>
@@ -144,7 +146,7 @@ function StateData(props) {
                                     <h4>
                                         <ArrowUpOutlined />{' '}
                                         {((deltas.confirmeddelta - deltas.recovereddelta - deltas.deceaseddelta) /
-                                            stateData[0].active *
+                                            (stateData[0].active - (deltas.confirmeddelta - deltas.recovereddelta - deltas.deceaseddelta)) *
                                             100).toFixed(2)}
                                         {'% '}
 										today
@@ -174,7 +176,7 @@ function StateData(props) {
 									</h4>
                                     <h4>
                                         <ArrowUpOutlined />{' '}
-                                        {(deltas.recovereddelta / stateData[0].recovered * 100).toFixed(2)}
+                                        {(deltas.recovereddelta / (stateData[0].recovered - deltas.recovereddelta) * 100).toFixed(2)}
                                         {'% '}
 										today
 									</h4>
@@ -201,7 +203,7 @@ function StateData(props) {
 									</h4>
                                     <h4>
                                         <ArrowUpOutlined />{' '}
-                                        {(deltas.deceaseddelta / stateData[0].deaths * 100).toFixed(2)}
+                                        {(deltas.deceaseddelta / (stateData[0].deaths - deltas.deceaseddelta) * 100).toFixed(2)}
                                         {'% '}
 										today
 									</h4>

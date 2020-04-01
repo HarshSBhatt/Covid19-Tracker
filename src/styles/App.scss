@@ -79,10 +79,10 @@ $gray: #6c757d;
 		.number {
 			div {
 				font-size: 40px;
-					color: white;
-					font-weight: 1000;
-					letter-spacing: 5px;
-					padding: 5px 0;
+				color: white;
+				font-weight: 1000;
+				letter-spacing: 5px;
+				padding: 5px 0;
 				// span{
 				// 	font-size: 40px;
 				// 	color: white;
@@ -529,6 +529,9 @@ th {
 	}
 }
 @media (max-width: 768px) {
+	.ChoroplethMap {
+		height: 670px;
+	}
 	.info_source {
 		font-size: 12px !important;
 	}
@@ -543,7 +546,7 @@ th {
 	.chart {
 		margin: 0 1rem !important;
 	}
-	.note{
+	.note {
 		font-size: 5px !important;
 	}
 	.bunch-of-card {
@@ -586,7 +589,7 @@ th {
 		margin: 0;
 		padding: 0 10px !important;
 		padding-bottom: 50px !important;
-		
+
 		h1 {
 			font-size: 20px !important;
 		}
@@ -779,8 +782,6 @@ th {
 	letter-spacing: 5px;
 	color: white;
 	h3 {
-		margin-left: 10px;
-		margin-right: 10px;
 		color: white;
 	}
 }

@@ -5,7 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 function Footer() {
     return (
         <div className='footer'>
-            <h3>Made with </h3>{<FontAwesomeIcon icon={faHeart} />} <h3> in India</h3>
+            <h3>Made with{' '}{<FontAwesomeIcon icon={faHeart} />}{' '}in India</h3>
         </div>
     )
 }

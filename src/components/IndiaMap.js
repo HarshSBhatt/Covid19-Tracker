@@ -101,7 +101,7 @@ function IndiaMap(props) {
                 .on('mouseenter', (d) => {
                     handleMouseover(d.properties.ST_NM);
                     const target = d3.event.target;
-                    d3.select(target.parentNode.appendChild(target)).attr('stroke', '#E05F0C').attr('stroke-width', 4);
+                    d3.select(target.parentNode.appendChild(target)).attr('stroke', '#E05F0C').attr('stroke-width', 3);
                 })
                 .on('mouseleave', (d) => {
                     // const n = unemployment.get(d.properties.ST_NM.toLowerCase());

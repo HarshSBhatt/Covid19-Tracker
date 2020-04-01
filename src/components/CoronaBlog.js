@@ -7,7 +7,7 @@ const { TabPane } = Tabs;
 function CoronaBlog() {
     useEffect(() => {
         window.scroll(0, 0)
-    })
+    }, [])
     return (
         <React.Fragment>
             <div className="about_corona animY">
