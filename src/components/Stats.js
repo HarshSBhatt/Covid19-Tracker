@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import { ArrowUpOutlined } from '@ant-design/icons';
-import { gray } from 'd3';
+
 function Stats(props) {
     const { stateDistrictWiseData, stateData } = props;
     const states = [];
