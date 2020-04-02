@@ -7,6 +7,8 @@ function Footer() {
         <div className='footer'>
             <p>Source : Johns Hopkins University, MOHFW & Crowd sourced with verification</p>
             <h3>Made with{' '}{<FontAwesomeIcon icon={faHeart} />}{' '}in India</h3>
+            <p>For any query regarding this site contact us at: <a href="mailto:support@covid19app.in?subject=Query">support@covid19app.in</a></p>
+
         </div>
     )
 }

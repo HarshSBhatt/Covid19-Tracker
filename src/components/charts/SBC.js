@@ -21,9 +21,9 @@ export default class SBC extends PureComponent {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="active" stackId="a" fill="#8884d8" />
-                <Bar dataKey="recovered" stackId="a" fill="#82ca9d" />
-                <Bar dataKey="deaths" stackId="a" fill="#f61313" />
+                <Bar dataKey="active" stackId="a" fill="#01579B" />
+                <Bar dataKey="recovered" stackId="a" fill="#4FC3F7" />
+                <Bar dataKey="deaths" stackId="a" fill="#B3E5FC" />
 
             </BarChart>
         );

@@ -15,15 +15,8 @@ function App() {
     const [lastUpdated, setLastUpdated] = useState('');
     const [timeSeries, setTimeSeries] = useState([]);
     const [loading, setLoading] = useState(true);
-    // const sleep = (milliseconds) => {
-    //     return new Promise((resolve) => setTimeout(resolve, milliseconds));
-    // };
-    // const wait = async (milliseconds = 2000) => {
-    //     await sleep(milliseconds);
-    // };
-    // useEffect(() => {
-    //     wait(2000);
-    // }, [loading]);
+    const [stateDistrictWiseData, setStateDistrictWiseData] = useState({});
+
     useEffect(
         () => {
             if (fetched === false) {
@@ -33,30 +26,45 @@ function App() {
         [fetched]
     );
 
-    const getStates = () => {
-        axios
-            .get('https://api.covid19india.org/data.json')
-            .then((response) => {
-                setStateData(response.data.statewise);
-                setTimeSeries(response.data.cases_time_series);
-                setDeltas(response.data.key_values[0]);
-                setLastUpdated(
-                    response.data.statewise[0].lastupdatedtime.slice(0, 15) +
-                    response.data.statewise[0].lastupdatedtime.slice(15)
-                );
-                setFetched(true);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    const getStates = async () => {
+        try {
+            const [response, stateDistrictWiseResponse] = await Promise.all([
+                axios.get('https://api.covid19india.org/data.json'),
+                axios.get('https://api.covid19india.org/state_district_wise.json'),
+            ]);
+            setStateData(response.data.statewise);
+            setTimeSeries(response.data.cases_time_series);
+            setLastUpdated(
+                response.data.statewise[0].lastupdatedtime.slice(0, 15) +
+                response.data.statewise[0].lastupdatedtime.slice(15)
+            );
+            setDeltas(response.data.key_values[0]);
+            setStateDistrictWiseData(stateDistrictWiseResponse.data);
+            setFetched(true);
+
+            setLoading(false);
+        } catch (err) {
+            console.log(err);
+        }
     };
 
+
+    function compare(a, b) {
+        const bandA = parseInt(a.confirmed);
+        const bandB = parseInt(b.confirmed);
+
+        let comparison = 0;
+        if (bandA < bandB) {
+            comparison = 1;
+        } else if (bandA > bandB) {
+            comparison = -1;
+        }
+        return comparison;
+    }
+    stateData.sort(compare);
     if (loading) return <Loader />;
     return (
         <React.Fragment>
-
-
             <div className="covid19app">
                 <div className="home" style={{ padding: 24 }}>
                     <div className="left anim">
@@ -67,7 +75,7 @@ function App() {
                     </div>
                 </div>
                 <div>
-                    <Stats stateData={stateData} />
+                    <Stats stateDistrictWiseData={stateDistrictWiseData} stateData={stateData} />
                 </div>
                 <div className="visualize">
                     <Visualization timeSeries={timeSeries} stateData={stateData} />

@@ -1,16 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 function Nav() {
     return (
         <header className="Navbar animY">
-            <Link to='/'>
+            <NavLink to='/'>
                 <div className="logo">
                     <img src={require('../assets/corona.svg')} alt='Wait' />
                 </div>
-            </Link>
+            </NavLink>
             <div className='link'>
-                <li><Link exact='true' to='/' className='l1'>Home</Link></li>
-                <li><Link to='/about-corona'>About Corona</Link></li>
+                <li><NavLink activeclassname='active' exact={true} to='/' className='l1'>Home</NavLink></li>
+                <li><NavLink activeclassname='active' to='/about-corona'>About Corona</NavLink></li>
+                <li><a href="mailto:support@covid19app.in?subject=Query">Contact</a></li>
                 {/* <li><a href='https://www.buymeacoffee.com/covid19app' className='l2'><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style={{ height: 51, width: 217 }} /></a></li> */}
             </div>
         </header>

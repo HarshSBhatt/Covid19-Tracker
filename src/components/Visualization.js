@@ -7,6 +7,9 @@ function Visualization(props) {
     const { timeSeries, stateData } = props;
     const dayTotal = [];
     const stateAnalysis = [];
+    const india_population = 1339200000
+    const million = 1000000
+    const perMillion = stateData && (((stateData[0].confirmed * million) / india_population)).toFixed(2)
     timeSeries.length &&
         timeSeries.forEach((day) => {
             dayTotal.push({
@@ -53,14 +56,39 @@ function Visualization(props) {
         }
         return comparison;
     }
+    const date = timeSeries[timeSeries.length - 1].date
+    const day = parseInt(date.slice(0, 3))
+    let sup = 'th'
+    if (day === 1) {
+        sup = 'st'
+    }
+    else if (day === 2) {
+        sup = 'nd'
+    }
+    else if (day === 3) {
+        sup = 'rd'
+    }
+    else {
+        sup = 'th'
+    }
     stateAnalysis.sort(compare);
     const top10 = [...stateAnalysis.slice(0, 11)]
     return (
         <React.Fragment>
             <h1 className="chart">Visualized Information</h1>
-            <h3 className="dateGraph">As of {timeSeries[timeSeries.length - 1].date}</h3>
+            <h3 className="dateGraph">{`As of ${day}`}<sup>{sup}</sup>{` ${date.slice(3)}`}</h3>
             <div className="chart-wrapper">
                 <div className="case_rates wid">
+                    <div className="card-wrapper">
+                        <div className="card">
+                            <div>
+                                <h1>Confirmed Cases</h1>
+                            </div>
+                            <div>
+                                <h1>{perMillion} / million</h1>
+                            </div>
+                        </div>
+                    </div>
                     <div className="card-wrapper">
                         <div className="card">
                             <div>

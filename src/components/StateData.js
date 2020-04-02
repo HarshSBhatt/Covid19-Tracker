@@ -35,13 +35,14 @@ function StateData(props) {
             dataIndex: 'state',
             key: 'state',
             className: 'state',
-            width: 150
+            width: '40%'
         },
         {
             title: window.innerWidth <= 768 ? 'C' : 'Confirmed',
             dataIndex: 'confirmed',
             key: 'confirmed',
             className: 'content',
+            width: '15%',
             defaultSortOrder: 'descend',
             sorter: (a, b) => a.confirmed - b.confirmed
         },
@@ -50,6 +51,7 @@ function StateData(props) {
             dataIndex: 'active',
             key: 'active',
             className: 'content',
+            width: '15%',
             sorter: (a, b) => a.active - b.active
         },
         {
@@ -57,6 +59,7 @@ function StateData(props) {
             dataIndex: 'recovered',
             key: 'recovered',
             className: 'content',
+            width: '15%',
             sorter: (a, b) => a.recovered - b.recovered
         },
         {
@@ -64,6 +67,7 @@ function StateData(props) {
             dataIndex: 'deaths',
             key: 'deaths',
             className: 'content',
+            width: '15%',
             sorter: (a, b) => a.deaths - b.deaths
         }
     ];
