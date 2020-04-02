@@ -9,8 +9,8 @@ function Nav() {
                 </div>
             </NavLink>
             <div className='link'>
-                <li><NavLink activeclassname='active' exact={true} to='/' className='l1'>Home</NavLink></li>
-                <li><NavLink activeclassname='active' to='/about-corona'>About Corona</NavLink></li>
+                <li><NavLink className='current-link' activeclassname='active' exact={true} to='/' className='l1'>Home</NavLink></li>
+                <li><NavLink className='currentLink' activeclassname='active' to='/about-corona'>About Corona</NavLink></li>
                 <li><a href="mailto:support@covid19app.in?subject=Query">Contact</a></li>
                 {/* <li><a href='https://www.buymeacoffee.com/covid19app' className='l2'><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style={{ height: 51, width: 217 }} /></a></li> */}
             </div>

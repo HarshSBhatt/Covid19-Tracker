@@ -79,6 +79,8 @@ function Visualization(props) {
             <h3 className="dateGraph">{`As of ${day}`}<sup>{sup}</sup>{` ${date.slice(3)}`}</h3>
             <div className="chart-wrapper">
                 <div className="case_rates wid">
+
+                    <h1>Data Analysis</h1>
                     <div className="card-wrapper">
                         <div className="card">
                             <div>
