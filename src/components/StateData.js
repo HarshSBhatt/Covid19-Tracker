@@ -100,7 +100,7 @@ function StateData(props) {
                     confirmed: state.delta.confirmed,
                     active: state.delta.active,
                     recovered: state.delta.recovered,
-                    deaths: state.delta.death,
+                    deaths: state.delta.deaths,
                     children: stateDistrictWiseData[state.state]
                         ? cities(stateDistrictWiseData[state.state].districtData)
                         : null

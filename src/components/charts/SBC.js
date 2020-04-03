@@ -17,7 +17,7 @@ export default class SBC extends PureComponent {
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey='state' />
+                <XAxis dataKey={window.innerWidth <= 768 ? 'abbr' : 'state'} />
                 <YAxis />
                 <Tooltip />
                 <Legend />

@@ -35,7 +35,7 @@ function Visualization(props) {
             if (index !== 0 && parseInt(state.confirmed) !== 0) {
                 stateAnalysis.push({
                     state: state.state,
-                    abbr: state.state.slice(0, 3),
+                    abbr: state.statecode,
                     active: parseInt(state.active),
                     recovered: parseInt(state.recovered),
                     deaths: parseInt(state.deaths),
