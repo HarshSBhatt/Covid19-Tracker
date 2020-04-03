@@ -247,7 +247,7 @@ function StateData(props) {
                             columns={columns}
                             dataSource={stateCase}
                             locale={{ emptyText: <Empty description={<span>Today's data is yet to be updated</span>} /> }}
-                            scroll={{ y: 220 }}
+                            scroll={window.innerWidth >= 768 && { y: 220 }}
                             summary={() => {
                                 return (
                                     <React.Fragment>
