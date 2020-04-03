@@ -1,5 +1,7 @@
 @import '~antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+@import './news.scss';
+
 body {
 	overflow-x: hidden;
 }
@@ -464,7 +466,8 @@ tr:hover,
 svg {
 	cursor: pointer;
 }
-td.state {
+td.state,
+th.state {
 	font-weight: bolder;
 	text-align: left;
 	letter-spacing: 0.5px;

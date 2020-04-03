@@ -60,6 +60,7 @@ function Stats(props) {
             dataIndex: 'state',
             key: 'state',
             className: 'state',
+            sorter: (a, b) => a.state.localeCompare(b.state),
             width: '40%'
         },
         {

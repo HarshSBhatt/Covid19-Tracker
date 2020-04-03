@@ -1,10 +1,11 @@
 import React from 'react';
 import { Spin } from 'antd';
 
-function Loader() {
+function Loader(props) {
+    const { message } = props
     return (
         <div className="loader center">
-            <Spin tip="Fetching Latest Data" />
+            <Spin tip={message} />
         </div>
     );
 }

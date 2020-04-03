@@ -62,13 +62,13 @@ function App() {
         return comparison;
     }
     stateData.sort(compare);
-    if (loading) return <Loader />;
+    if (loading) return <Loader message='Fetching Latest Data' />;
     return (
         <React.Fragment>
             <div className="covid19app">
                 <div className="home" style={{ padding: 24 }}>
                     <div className="left anim">
-                        <StateData update={lastUpdated} stateData={stateData} deltas={deltas} />
+                        <StateData update={lastUpdated} stateData={stateData} deltas={deltas} stateDistrictWiseData={stateDistrictWiseData} />
                     </div>
                     <div className="right anim">
                         <IndiaMap states={stateData} />

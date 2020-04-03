@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import '../styles/App.scss';
 import Home from './Home'
-import Donate from './Donate'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ReactGA from 'react-ga';
 import PageNotFound from './PageNotFound';
 import { Helmet } from 'react-helmet'
 import Nav from './Nav';
 import CoronaBlog from './CoronaBlog';
+import News from './news/News';
 
 function App() {
   useEffect(() => {
@@ -15,7 +15,6 @@ function App() {
     ReactGA.initialize('UA-162207556-1');
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, [])
-
   return (
     <Router>
       <div className="App">
@@ -28,8 +27,8 @@ function App() {
         <Nav />
         <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/donate' exact component={Donate} />
           <Route path='/about-corona' component={CoronaBlog} />
+          <Route path='/news' component={News} />
           <Route component={PageNotFound} />
         </Switch>
       </div>

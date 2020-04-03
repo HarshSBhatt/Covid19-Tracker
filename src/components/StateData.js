@@ -6,7 +6,7 @@ import Moment from 'react-moment';
 // import CountUp from 'react-countup';
 
 function StateData(props) {
-    const { update, stateData, deltas } = props;
+    const { update, stateData, deltas, stateDistrictWiseData } = props;
     const time = update.split('/');
 
     const date = time && time[0];
@@ -14,19 +14,36 @@ function StateData(props) {
     const year = update.slice(6, 10);
     let hr = time[2].slice(5, 7);
     const min = time[2].slice(8, 10);
-    // let format = update.slice(11, 13);
-    // if (parseInt(format) >= 13) {
-    //     hr = parseInt(format) - 12;
-    // } else {
-    //     hr = parseInt(format);
-    // }
-    // if (hr < 10) {
-    //     hr = `0${hr}`;
-    // }
-    const str = `${year}-${mon}-${date}T${hr}:${min}+0530`;
-    // const dateToFormat = new Date('1976-04-19T12:59-0500');
 
-    // console.log(str)
+    const str = `${year}-${mon}-${date}T${hr}:${min}+0530`;
+
+    function cities(state) {
+        const cities = [];
+        cities.push({
+            key: 'Cities',
+            state: <b style={{ color: 'gray', fontSize: 10 }}>Cities</b>,
+            confirmed:
+                window.innerWidth <= 768 ? (
+                    <b style={{ color: 'gray', fontSize: 9, display: 'flex', justifyContent: 'center' }}>CNF</b>
+                ) : (
+                        <b style={{ color: 'gray', fontSize: 10 }}>Confirmed</b>
+                    ),
+        });
+        Object.keys(state).forEach((city) => {
+            if (state[city].delta.confirmed > 0) {
+                cities.push({
+                    key: city,
+                    state: city,
+                    confirmed: state[city].delta.confirmed > 0 && (
+                        <span style={{ color: 'red' }}>
+                            <ArrowUpOutlined /> {state[city].delta.confirmed}
+                        </span>
+                    )
+                })
+            }
+        });
+        return cities;
+    }
 
     const stateCase = [];
     const columns = [
@@ -35,6 +52,8 @@ function StateData(props) {
             dataIndex: 'state',
             key: 'state',
             className: 'state',
+            sortDirections: ['descend', 'ascend'],
+            sorter: (a, b) => a.state.localeCompare(b.state),
             width: '40%'
         },
         {
@@ -71,6 +90,7 @@ function StateData(props) {
             sorter: (a, b) => a.deaths - b.deaths
         }
     ];
+    let active = stateData[0] && (stateData[0].confirmed - stateData[0].recovered - stateData[0].deaths)
     stateData &&
         stateData.forEach((state, index) => {
             if (index !== 0 && state.delta.confirmed !== 0) {
@@ -80,7 +100,10 @@ function StateData(props) {
                     confirmed: state.delta.confirmed,
                     active: state.delta.active,
                     recovered: state.delta.recovered,
-                    deaths: state.delta.deaths
+                    deaths: state.delta.death,
+                    children: stateDistrictWiseData[state.state]
+                        ? cities(stateDistrictWiseData[state.state].districtData)
+                        : null
                 });
             }
         });
@@ -130,7 +153,7 @@ function StateData(props) {
                                 </div>
                             </div>
                             <div className="number">
-                                <div>{stateData[0] && stateData[0].active}</div>
+                                <div>{active}</div>
                                 <div>
                                     <h4>
                                         [{deltas ? deltas.confirmeddelta -
@@ -150,7 +173,7 @@ function StateData(props) {
                                     <h4>
                                         <ArrowUpOutlined />{' '}
                                         {((deltas.confirmeddelta - deltas.recovereddelta - deltas.deceaseddelta) /
-                                            (stateData[0].active - (deltas.confirmeddelta - deltas.recovereddelta - deltas.deceaseddelta)) *
+                                            (active - (deltas.confirmeddelta - deltas.recovereddelta - deltas.deceaseddelta)) *
                                             100).toFixed(2)}
                                         {'% '}
 										today

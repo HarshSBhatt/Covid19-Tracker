@@ -14,7 +14,7 @@ function CoronaBlog() {
                 <Helmet>
                     <meta charSet="UTF-8" />
                     <title>Stay Home, Stay Safe!</title>
-                    <meta name="description" content="Novel Coronavirus Tracker" />
+                    <meta name="description" content="Information related to novel corona virus with symptoms" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
                 </Helmet>
                 <Tabs defaultActiveKey="1" size="large">
