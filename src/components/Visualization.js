@@ -87,7 +87,7 @@ function Visualization(props) {
                                 <h1>Confirmed Cases</h1>
                             </div>
                             <div>
-                                <h1>{perMillion} / million</h1>
+                                <h1>{perMillion}{' '}people / million</h1>
                             </div>
                         </div>
                     </div>

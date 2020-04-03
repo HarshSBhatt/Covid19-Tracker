@@ -1,6 +1,13 @@
 @import '~antd/dist/antd.css';
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+// @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 @import './News.scss';
+
+@font-face {
+	font-family: 'Poppins' !important;
+	src: url('../fonts/Poppins-SemiBold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 
 body {
 	overflow-x: hidden;
@@ -179,7 +186,7 @@ a,
 text,
 th,
 li {
-	font-family: 'Poppins', sans-serif !important;
+	font-family: 'Poppins' !important;
 	text-transform: uppercase !important;
 	color: $header;
 }
