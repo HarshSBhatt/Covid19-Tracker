@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { legendColor } from 'd3-svg-legend';
 import * as topojson from 'topojson-client';
 
 
@@ -68,18 +69,63 @@ function IndiaMap(props) {
         const projection = d3.geoMercator().center([78.9, 19]).scale(1000).translate([width / 2, height / 2]);
         const path = d3.geoPath(projection);
         // Colorbar
-        const buckets = 5;
-        const colors = ['#d8d1e1', '#a493b9', '#8a74a4', '#58466c', '#3f324d'];
-        const colorScale = d3
-            .scaleQuantile()
-            .domain(
-                states && states.map(function (d) {
-                    return d.confirmed / buckets * statistic.maxConfirmed * 0.05;
-                })
-            )
+        const colors = ['#D8BFD8', '#d8d1e1', '#a493b9', '#8a74a4', '#58466c', '#3f324d'];
+        const colorScale = d3.scaleThreshold()
+            .domain([statistic.maxConfirmed / 6, statistic.maxConfirmed / 5, statistic.maxConfirmed / 4, statistic.maxConfirmed / 3, statistic.maxConfirmed / 2, statistic.maxConfirmed])
             .range(colors);
-        svg.append('g').attr('class', 'legendLinear').attr('transform', 'translate(1, 375)');
+
+        // .scaleQuantile()
+        // .domain(
+        //     states && states.map(function (d) {
+        //         return d.confirmed / buckets * statistic.maxConfirmed * 0.05;
+        //     })
+        // )
+        // .range(colors);
+
+        function label({ i, genLength, generatedLabels, labelDelimiter }) {
+            const gl = generatedLabels[i].split(' ')
+            const generatedLabel = [gl[0], gl[2]]
+            if (i === genLength - 1) {
+                const n = Math.floor(generatedLabel[1]);
+                return `${n}+`;
+            } else {
+                if (isNaN(parseInt(generatedLabel[0]))) {
+                    generatedLabel[0] = 0
+                }
+                const n1 = Math.floor(parseInt(generatedLabel[0]));
+                const n2 = Math.floor(parseInt(generatedLabel[1]));
+                return `${n1} - ${n2}`;
+            }
+        }
+
+        // const color = d3.scaleSequential()
+        //     .domain(['#D8BFD8', '#d8d1e1', '#a493b9', '#8a74a4', '#58466c', '#3f324d']);
+
+        svg.append('g')
+            .attr('class', 'legendLinear')
+            .attr('transform', 'translate(0, 500)');
+
+        const numCells = 6;
+        const delta = Math.floor(statistic.maxConfirmed / (numCells - 1));
+        const cells = Array.from(Array(numCells).keys()).map((i) => i * delta);
+
+        const legendLinear = legendColor()
+            .shapeWidth(80)
+            .cells(cells)
+            .titleWidth(3)
+            .labels(label)
+            .title('Confirmed Cases')
+            .orient('horizontal')
+            .scale(colorScale);
+
+        svg.select('.legendLinear')
+            .call(legendLinear);
+
+
+
+        svg.append('g').attr('class', 'legendLinear').attr('transform', 'translate(0, 500)');
         const promises = [d3.json('/india.json')];
+
         Promise.all(promises).then(ready);
         function ready([india]) {
             states && states.forEach((state) => {
@@ -128,6 +174,7 @@ function IndiaMap(props) {
                 .attr('stroke-width', 1)
                 .attr('d', path(topojson.mesh(india, india.objects.india)));
         }
+
     };
 
     return (
@@ -209,9 +256,9 @@ function IndiaMap(props) {
                 <svg
                     className='anim'
                     id="chart"
-                    width={window.innerWidth < 768 ? 400 : 580}
-                    height={window.innerWidth < 768 ? 550 : 640}
-                    viewBox={`0 0 680 ${window.innerWidth < 479 ? 500 : 640}`}
+                    width={window.innerWidth < 769 ? 400 : 580}
+                    height={window.innerWidth < 769 ? 550 : 640}
+                    viewBox={`0 0 680 ${window.innerWidth < 769 ? 500 : 640}`}
                     preserveAspectRatio="xMidYMid meet"
                     ref={choroplethMap}
                 />

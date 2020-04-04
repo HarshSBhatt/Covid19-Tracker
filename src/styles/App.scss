@@ -4,7 +4,7 @@
 
 @font-face {
 	font-family: 'Poppins' !important;
-	src: url('../fonts/Poppins-SemiBold.ttf') format('truetype');
+	src: url('../fonts/Poppins-Light.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -659,6 +659,10 @@ th {
 	}
 	.chart-wrapper {
 		margin: 0;
+		flex-direction: column;
+		.wid {
+			width: 100%;
+		}
 	}
 	.case_rates {
 		flex-direction: column !important;

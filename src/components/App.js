@@ -10,11 +10,11 @@ import CoronaBlog from './CoronaBlog';
 import News from './news/News';
 
 function App() {
-  useEffect(() => {
-    window.scroll(0, 0)
-    ReactGA.initialize('UA-162207556-1');
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, [])
+  // useEffect(() => {
+  //   window.scroll(0, 0)
+  //   ReactGA.initialize('UA-162207556-1');
+  //   ReactGA.pageview(window.location.pathname + window.location.search);
+  // }, [])
   return (
     <Router>
       <div className="App">
