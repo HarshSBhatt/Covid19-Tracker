@@ -5,6 +5,7 @@ import Moment from 'react-moment';
 import Footer from '../Footer';
 import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
+import Loader from '../Loader';
 
 const { Meta } = Card;
 
@@ -40,7 +41,7 @@ function News() {
     const newsSet = new Set(news1)
     const news3 = [...newsSet]
 
-    // if (loading) return <Loader message='Fetching Latest News' />;
+    if (loading) return <Loader message='Fetching Latest News' />;
     return (
         <React.Fragment>
             <Helmet>

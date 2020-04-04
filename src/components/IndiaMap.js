@@ -69,9 +69,12 @@ function IndiaMap(props) {
         const projection = d3.geoMercator().center([78.9, 19]).scale(1000).translate([width / 2, height / 2]);
         const path = d3.geoPath(projection);
         // Colorbar
+        const numCells = 6;
+        const delta = Math.floor(statistic.maxConfirmed / (numCells - 1));
+        const cells = Array.from(Array(numCells).keys()).map((i) => i * delta);
         const colors = ['#D8BFD8', '#d8d1e1', '#a493b9', '#8a74a4', '#58466c', '#3f324d'];
         const colorScale = d3.scaleThreshold()
-            .domain([statistic.maxConfirmed / 6, statistic.maxConfirmed / 5, statistic.maxConfirmed / 4, statistic.maxConfirmed / 3, statistic.maxConfirmed / 2, statistic.maxConfirmed])
+            .domain(cells.slice(1))
             .range(colors);
 
         // .scaleQuantile()
@@ -84,9 +87,9 @@ function IndiaMap(props) {
 
         function label({ i, genLength, generatedLabels, labelDelimiter }) {
             const gl = generatedLabels[i].split(' ')
-            const generatedLabel = [gl[0], gl[2]]
+            const generatedLabel = [gl[0], gl[2] - 1]
             if (i === genLength - 1) {
-                const n = Math.floor(generatedLabel[1]);
+                const n = Math.floor(generatedLabel[0]);
                 return `${n}+`;
             } else {
                 if (isNaN(parseInt(generatedLabel[0]))) {
@@ -105,9 +108,7 @@ function IndiaMap(props) {
             .attr('class', 'legendLinear')
             .attr('transform', 'translate(0, 500)');
 
-        const numCells = 6;
-        const delta = Math.floor(statistic.maxConfirmed / (numCells - 1));
-        const cells = Array.from(Array(numCells).keys()).map((i) => i * delta);
+
 
         const legendLinear = legendColor()
             .shapeWidth(80)
@@ -117,7 +118,6 @@ function IndiaMap(props) {
             .title('Confirmed Cases')
             .orient('horizontal')
             .scale(colorScale);
-
         svg.select('.legendLinear')
             .call(legendLinear);
 
