@@ -72,7 +72,7 @@ function IndiaMap(props) {
         const numCells = 6;
         const delta = Math.floor(statistic.maxConfirmed / (numCells - 1));
         const cells = Array.from(Array(numCells).keys()).map((i) => i * delta);
-        const colors = ['#D8BFD8', '#d8d1e1', '#a493b9', '#8a74a4', '#58466c', '#3f324d'];
+        const colors = ['#d8d1e1', '#d8bfd8', '#a493b9', '#8a74a4', '#58466c', '#3f324d'];
         const colorScale = d3.scaleThreshold()
             .domain(cells.slice(1))
             .range(colors);

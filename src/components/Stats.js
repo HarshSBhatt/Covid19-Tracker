@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import Text from 'antd/lib/typography/Text';
-import { ArrowUpOutlined } from '@ant-design/icons';
+import { ArrowUpOutlined, PlusSquareOutlined } from '@ant-design/icons';
 
 function Stats(props) {
     const { stateDistrictWiseData, stateData } = props;
@@ -100,7 +100,8 @@ function Stats(props) {
     return (
         <div className="table">
             <h1 style={{ padding: '20px 0' }}>States affected by CORONA Virus</h1>
-            <h4>{states.length} states/uts</h4>
+            <h4>{states.length - 1} states/uts</h4>
+            <h5 className='new_update'><span className='cities'>UPDATE</span> Click  <PlusSquareOutlined />  to get cities detail</h5>
             {window.innerWidth <= 768 ? (
                 <h3 className="tips">C: Confirmed | A: Active | R: Recovered | D: Deaths</h3>
             ) : null}

@@ -3,7 +3,7 @@
 @import './News.scss';
 
 @font-face {
-	font-family: 'Poppins' !important;
+	font-family: 'Poppins', sans-serif !important;
 	src: url('../fonts/Poppins-Light.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
@@ -161,6 +161,7 @@ $gray: #6c757d;
 				h4 {
 					color: white;
 					letter-spacing: 2px;
+					font-weight: normal;
 				}
 			}
 		}
@@ -186,7 +187,7 @@ a,
 text,
 th,
 li {
-	font-family: 'Poppins' !important;
+	font-family: 'Poppins', sans-serif !important;
 	text-transform: uppercase !important;
 	color: $header;
 }

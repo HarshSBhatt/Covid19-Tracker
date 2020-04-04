@@ -43,10 +43,65 @@
 	font-size: 20px;
 	letter-spacing: 3px;
 }
+
+.faq {
+	padding-top: 6rem;
+	margin: 0 16rem;
+	display: flex;
+	flex-direction: column;
+	div {
+		text-transform: none !important;
+		font-size: 30px !important;
+		padding: 20px 0;
+	}
+	p {
+		text-transform: none !important;
+		padding: 10px;
+		text-align: center;
+	}
+	.que {
+		font-weight: bolder;
+		color: gray;
+	}
+}
+
+@media (max-width: 1024px) {
+	.faq {
+		margin: 0 6rem !important;
+	}
+}
 @media (max-width: 768px) {
 	.news-wrapper {
 		.ant-card {
 			padding: 1rem;
 		}
 	}
+	.faq {
+		margin: 0 2rem !important;
+		div {
+			font-size: 18px !important;
+		}
+		p {
+			font-size: 12px !important;
+			padding: 10px;
+		}
+	}
+}
+.new_update {
+	font-weight: normal;
+	padding: 10px 0;
+	.cities {
+		text-align: center;
+		color: white;
+		background: black;
+		padding: 5px;
+		border-radius: 4px;
+		letter-spacing: 2px;
+	}
+}
+.know_more {
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: gray;
+	font-size: 10px !important;
 }

@@ -1,8 +1,9 @@
 import React from 'react';
-import { ArrowUpOutlined } from '@ant-design/icons';
+import { ArrowUpOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import { Table, Empty } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 // import CountUp from 'react-countup';
 
 function StateData(props) {
@@ -118,6 +119,7 @@ function StateData(props) {
                             About <Moment fromNow>{str}</Moment>
                         </h3>
                     </div>
+                    <h5 className='know_more'>Compiled from state government | <Link to='/faq' style={{ color: 'gray' }}>Know More</Link></h5>
                     <div className="bunch-of-card anim">
                         <div className="card-wrapper">
                             <div className="card">
@@ -240,6 +242,7 @@ function StateData(props) {
                     </div>
                     <div className="new-cases">
                         <h1>Today's New Cases</h1>
+                        <h5 className='new_update'><span className='cities'>UPDATE</span> Click  <PlusSquareOutlined />  to get cities detail</h5>
                         {window.innerWidth <= 768 ? <h3 className='tips'>C: Confirmed | A: Active | R: Recovered | D: Deaths</h3> : null}
                         <Table
                             size="small"

@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet'
 import Nav from './Nav';
 import CoronaBlog from './CoronaBlog';
 import News from './news/News';
+import FAQ from './FAQ';
 
 function App() {
   useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/about-corona' component={CoronaBlog} />
           <Route path='/news' component={News} />
+          <Route path='/faq' component={FAQ} />
           <Route component={PageNotFound} />
         </Switch>
       </div>
