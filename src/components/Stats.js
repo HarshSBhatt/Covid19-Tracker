@@ -40,7 +40,7 @@ function Stats(props) {
     }
     stateData &&
         stateData.forEach((state, index) => {
-            if (index !== 0 && parseInt(state.confirmed) > 0) {
+            if (index !== 0 && state.confirmed > 0) {
                 states.push({
                     key: state.state,
                     state: state.state,

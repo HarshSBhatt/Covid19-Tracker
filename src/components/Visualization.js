@@ -6,7 +6,6 @@ import LC from './charts/LC';
 function Visualization(props) {
     const { timeSeries, stateData } = props;
     const dayTotal = [];
-    const stateAnalysis = [];
     const india_population = 1339200000
     const million = 1000000
     const perMillion = stateData && (((stateData[0].confirmed * million) / india_population)).toFixed(2)
@@ -30,32 +29,6 @@ function Visualization(props) {
                 deaths: parseInt(day.totaldeceased)
             });
         });
-    stateData &&
-        stateData.forEach((state, index) => {
-            if (index !== 0 && parseInt(state.confirmed) !== 0) {
-                stateAnalysis.push({
-                    state: state.state,
-                    abbr: state.statecode,
-                    active: parseInt(state.active),
-                    recovered: parseInt(state.recovered),
-                    deaths: parseInt(state.deaths),
-                    confirmed: parseInt(state.confirmed)
-                });
-            }
-        });
-
-    function compare(a, b) {
-        const bandA = a.confirmed;
-        const bandB = b.confirmed;
-
-        let comparison = 0;
-        if (bandA < bandB) {
-            comparison = 1;
-        } else if (bandA > bandB) {
-            comparison = -1;
-        }
-        return comparison;
-    }
     const date = timeSeries[timeSeries.length - 1].date
     const day = parseInt(date.slice(0, 3))
     let sup = 'th'
@@ -71,8 +44,7 @@ function Visualization(props) {
     else {
         sup = 'th'
     }
-    stateAnalysis.sort(compare);
-    const top10 = [...stateAnalysis.slice(0, 11)]
+    const top10 = [...stateData.slice(1, 12)]
     return (
         <React.Fragment>
             <h1 className="chart">Visualized Information</h1>
@@ -139,3 +111,30 @@ function Visualization(props) {
 }
 
 export default Visualization;
+
+// stateData &&
+    //     stateData.forEach((state, index) => {
+    //         if (index !== 0 && parseInt(state.confirmed) !== 0) {
+    //             stateAnalysis.push({
+    //                 state: state.state,
+    //                 abbr: state.statecode,
+    //                 active: parseInt(state.active),
+    //                 recovered: parseInt(state.recovered),
+    //                 deaths: parseInt(state.deaths),
+    //                 confirmed: parseInt(state.confirmed)
+    //             });
+    //         }
+    //     });
+
+    // function compare(a, b) {
+    //     const bandA = a.confirmed;
+    //     const bandB = b.confirmed;
+
+    //     let comparison = 0;
+    //     if (bandA < bandB) {
+    //         comparison = 1;
+    //     } else if (bandA > bandB) {
+    //         comparison = -1;
+    //     }
+    //     return comparison;
+    // }

@@ -16,6 +16,7 @@ function Nav() {
                 {/* <li><a href='https://www.buymeacoffee.com/covid19app' className='l2'><img src="https://cdn.buymeacoffee.com/buttons/lato-orange.png" alt="Buy Me A Coffee" style={{ height: 51, width: 217 }} /></a></li> */}
             </div>
         </header>
+
     )
 }
 

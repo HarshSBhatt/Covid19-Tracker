@@ -4,10 +4,10 @@ import { Table, Empty } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
-// import CountUp from 'react-countup';
+import Share from './Share';
 
 function StateData(props) {
-    const { update, stateData, deltas, stateDistrictWiseData } = props;
+    const { update, stateData, stateDistrictWiseData } = props;
     const time = update.split('/');
 
     const date = time && time[0];
@@ -28,7 +28,7 @@ function StateData(props) {
                     <b style={{ color: 'gray', fontSize: 9, display: 'flex', justifyContent: 'center' }}>CNF</b>
                 ) : (
                         <b style={{ color: 'gray', fontSize: 10 }}>Confirmed</b>
-                    ),
+                    )
         });
         Object.keys(state).forEach((city) => {
             if (state[city].delta.confirmed > 0) {
@@ -40,7 +40,7 @@ function StateData(props) {
                             <ArrowUpOutlined /> {state[city].delta.confirmed}
                         </span>
                     )
-                })
+                });
             }
         });
         return cities;
@@ -91,35 +91,39 @@ function StateData(props) {
             sorter: (a, b) => a.deaths - b.deaths
         }
     ];
-    let active = stateData[0] && (stateData[0].confirmed - stateData[0].recovered - stateData[0].deaths)
-    stateData &&
-        stateData.forEach((state, index) => {
-            if (index !== 0 && state.delta.confirmed !== 0) {
-                stateCase.push({
-                    key: state.state,
-                    state: state.state,
-                    confirmed: state.delta.confirmed,
-                    active: state.delta.active,
-                    recovered: state.delta.recovered,
-                    deaths: state.delta.deaths,
-                    children: stateDistrictWiseData[state.state]
-                        ? cities(stateDistrictWiseData[state.state].districtData)
-                        : null
-                });
-            }
-        });
+    stateData.forEach((state, index) => {
+        if (index !== 0 && state.deltaconfirmed !== 0) {
+            stateCase.push({
+                key: state.state,
+                state: state.state,
+                confirmed: state.deltaconfirmed,
+                active: state.deltaactive,
+                recovered: state.deltarecovered,
+                deaths: state.deltadeaths,
+                children: stateDistrictWiseData[state.state]
+                    ? cities(stateDistrictWiseData[state.state].districtData)
+                    : null
+            });
+        }
+    });
     return (
         <React.Fragment>
             <div style={{ animationDelay: '0.3s' }}>
                 <div className="header-mid">
                     <h1>India COVID19 Tracker</h1>
+                    Share us: <Share />
                     <div className="last-update">
                         <h3>Last Updated: </h3>
                         <h3>
                             About <Moment fromNow>{str}</Moment>
                         </h3>
                     </div>
-                    <h5 className='know_more'>Compiled from state government | <Link to='/faq' style={{ color: 'gray' }}>Know More</Link></h5>
+                    <h5 className="know_more">
+                        Compiled from state government |{' '}
+                        <Link to="/faq" style={{ color: 'gray' }}>
+                            Know More
+						</Link>
+                    </h5>
                     <div className="bunch-of-card anim">
                         <div className="card-wrapper">
                             <div className="card">
@@ -131,17 +135,19 @@ function StateData(props) {
                                 <div>{stateData[0] && stateData[0].confirmed}</div>
                                 <div>
                                     <h4>
-                                        [{deltas ? deltas.confirmeddelta >= 0 ? (
-                                            '+' + deltas.confirmeddelta
+                                        [{stateData[0] ? stateData[0].deltaconfirmed >= 0 ? (
+                                            '+' + stateData[0].deltaconfirmed
                                         ) : (
-                                                deltas.confirmeddelta
+                                                stateData[0].deltaconfirmed
                                             ) : (
                                                 ''
                                             )}]
 									</h4>
                                     <h4>
                                         <ArrowUpOutlined />{' '}
-                                        {(deltas.confirmeddelta / (stateData[0].confirmed - deltas.confirmeddelta) * 100).toFixed(2)}
+                                        {(stateData[0].deltaconfirmed /
+                                            (stateData[0].confirmed - stateData[0].deltaconfirmed) *
+                                            100).toFixed(2)}
                                         {'% '}
 										today
 									</h4>
@@ -155,27 +161,23 @@ function StateData(props) {
                                 </div>
                             </div>
                             <div className="number">
-                                <div>{active}</div>
+                                <div>{stateData[0].active}</div>
                                 <div>
                                     <h4>
-                                        [{deltas ? deltas.confirmeddelta -
-                                            deltas.recovereddelta -
-                                            deltas.deceaseddelta >=
+                                        [{stateData[0] ? stateData[0].deltaactive >=
                                             0 ? (
                                                 '+' +
-                                                (deltas.confirmeddelta -
-                                                    deltas.recovereddelta -
-                                                    deltas.deceaseddelta).toString()
+                                                stateData[0].deltaactive
                                             ) : (
-                                                deltas.confirmeddelta - deltas.recovereddelta - deltas.deceaseddelta
+                                                stateData[0].deltaactive
                                             ) : (
                                                 ''
                                             )}]
 									</h4>
                                     <h4>
                                         <ArrowUpOutlined />{' '}
-                                        {((deltas.confirmeddelta - deltas.recovereddelta - deltas.deceaseddelta) /
-                                            (active - (deltas.confirmeddelta - deltas.recovereddelta - deltas.deceaseddelta)) *
+                                        {(stateData[0].deltaactive /
+                                            (stateData[0].active - stateData[0].deltaactive) *
                                             100).toFixed(2)}
                                         {'% '}
 										today
@@ -195,17 +197,19 @@ function StateData(props) {
                                 <div>{stateData[0] && stateData[0].recovered}</div>
                                 <div>
                                     <h4>
-                                        [{deltas ? deltas.recovereddelta >= 0 ? (
-                                            '+' + deltas.recovereddelta
+                                        [{stateData[0] ? stateData[0].deltarecovered >= 0 ? (
+                                            '+' + stateData[0].deltarecovered
                                         ) : (
-                                                deltas.recovereddelta
+                                                stateData[0].deltarecovered
                                             ) : (
                                                 ''
                                             )}]
 									</h4>
                                     <h4>
                                         <ArrowUpOutlined />{' '}
-                                        {(deltas.recovereddelta / (stateData[0].recovered - deltas.recovereddelta) * 100).toFixed(2)}
+                                        {(stateData[0].deltarecovered /
+                                            (stateData[0].recovered - stateData[0].deltarecovered) *
+                                            100).toFixed(2)}
                                         {'% '}
 										today
 									</h4>
@@ -222,17 +226,19 @@ function StateData(props) {
                                 <div>{stateData[0] && stateData[0].deaths}</div>
                                 <div>
                                     <h4>
-                                        [{deltas ? deltas.deceaseddelta >= 0 ? (
-                                            '+' + deltas.deceaseddelta
+                                        [{stateData[0] ? stateData[0].deltadeaths >= 0 ? (
+                                            '+' + stateData[0].deltadeaths
                                         ) : (
-                                                deltas.deceaseddelta
+                                                stateData[0].deltadeaths
                                             ) : (
                                                 ''
                                             )}]
 									</h4>
                                     <h4>
                                         <ArrowUpOutlined />{' '}
-                                        {(deltas.deceaseddelta / (stateData[0].deaths - deltas.deceaseddelta) * 100).toFixed(2)}
+                                        {(stateData[0].deltadeaths /
+                                            (stateData[0].deaths - stateData[0].deltadeaths) *
+                                            100).toFixed(2)}
                                         {'% '}
 										today
 									</h4>
@@ -242,14 +248,20 @@ function StateData(props) {
                     </div>
                     <div className="new-cases">
                         <h1>Today's New Cases</h1>
-                        <h5 className='new_update'><span className='cities'>UPDATE</span> Click  <PlusSquareOutlined />  to get cities detail</h5>
-                        {window.innerWidth <= 768 ? <h3 className='tips'>C: Confirmed | A: Active | R: Recovered | D: Deaths</h3> : null}
+                        <h5 className="new_update">
+                            <span className="cities">UPDATE</span> Click <PlusSquareOutlined /> to get cities detail
+						</h5>
+                        {window.innerWidth <= 768 ? (
+                            <h3 className="tips">C: Confirmed | A: Active | R: Recovered | D: Deaths</h3>
+                        ) : null}
                         <Table
                             size="small"
                             pagination={false}
                             columns={columns}
                             dataSource={stateCase}
-                            locale={{ emptyText: <Empty description={<span>Today's data is yet to be updated</span>} /> }}
+                            locale={{
+                                emptyText: <Empty description={<span>Today's data is yet to be updated</span>} />
+                            }}
                             scroll={window.innerWidth >= 768 && { y: 220 }}
                             summary={() => {
                                 return (
@@ -257,18 +269,16 @@ function StateData(props) {
                                         <tr className="footer-content">
                                             <th>Total</th>
                                             <td>
-                                                <Text type="danger">
-                                                    {stateData[0] && stateData[0].delta.confirmed}
-                                                </Text>
+                                                <Text type="danger">{stateData[0] && stateData[0].deltaconfirmed}</Text>
                                             </td>
                                             <td>
-                                                <Text>{stateData[0] && stateData[0].delta.active}</Text>
+                                                <Text>{stateData[0] && stateData[0].deltaactive}</Text>
                                             </td>
                                             <td>
-                                                <Text>{stateData[0] && stateData[0].delta.recovered}</Text>
+                                                <Text>{stateData[0] && stateData[0].deltarecovered}</Text>
                                             </td>
                                             <td>
-                                                <Text>{stateData[0] && stateData[0].delta.deaths}</Text>
+                                                <Text>{stateData[0] && stateData[0].deltadeaths}</Text>
                                             </td>
                                         </tr>
                                     </React.Fragment>

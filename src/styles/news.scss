@@ -1,3 +1,4 @@
+
 .news-header {
 	padding-top: 7.5rem;
 	text-align: center;
@@ -104,4 +105,11 @@
 	letter-spacing: 2px;
 	color: gray;
 	font-size: 10px !important;
+}
+
+.share{
+	display: flex;
+	button{
+		margin: 5px;
+	}
 }

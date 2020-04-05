@@ -128,7 +128,7 @@ function IndiaMap(props) {
 
         Promise.all(promises).then(ready);
         function ready([india]) {
-            states && states.forEach((state) => {
+            states.forEach((state) => {
                 unemployment.set(state.state.toLowerCase(), state.confirmed);
             });
             svg
@@ -189,10 +189,10 @@ function IndiaMap(props) {
                     <h5>Confirmed</h5>
                     <div className="stats-num ">
                         <h4>
-                            [{state.delta ? state.delta.confirmed >= 0 ? (
-                                '+' + state.delta.confirmed
+                            [{state ? state.deltaconfirmed >= 0 ? (
+                                '+' + state.deltaconfirmed
                             ) : (
-                                    state.delta.confirmed
+                                    state.deltaconfirmed
                                 ) : (
                                     ''
                                 )}]
@@ -204,10 +204,10 @@ function IndiaMap(props) {
                     <h5>Active</h5>
                     <div className="stats-num">
                         <h4>
-                            [{state.delta ? state.delta.active >= 0 ? (
-                                '+' + state.delta.active
+                            [{state ? state.deltaactive >= 0 ? (
+                                '+' + state.deltaactive
                             ) : (
-                                    state.delta.active
+                                    state.deltadeltaactive
                                 ) : (
                                     ''
                                 )}]
@@ -219,10 +219,10 @@ function IndiaMap(props) {
                     <h5>Recovered</h5>
                     <div className="stats-num">
                         <h4>
-                            [{state.delta ? state.delta.recovered >= 0 ? (
-                                '+' + state.delta.recovered
+                            [{state ? state.deltarecovered >= 0 ? (
+                                '+' + state.deltarecovered
                             ) : (
-                                    state.delta.recovered
+                                    state.deltarecovered
                                 ) : (
                                     ''
                                 )}]
@@ -234,10 +234,10 @@ function IndiaMap(props) {
                     <h5>Deaths</h5>
                     <div className="stats-bottom">
                         <h4>
-                            [{state.delta ? state.delta.deaths >= 0 ? (
-                                '+' + state.delta.deaths
+                            [{state ? state.deltadeaths >= 0 ? (
+                                '+' + state.deltadeaths
                             ) : (
-                                    state.delta.deaths
+                                    state.deltadeaths
                                 ) : (
                                     ''
                                 )}]
