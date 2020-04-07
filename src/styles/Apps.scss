@@ -1,127 +1,127 @@
-// @import '~antd/dist/antd.css';
-// body {
-// 	overflow-x: hidden;
-// }
-// #root {
-// 	overflow-x: hidden;
-// }
+@import '~antd/dist/antd.css';
+body {
+	overflow-x: hidden;
+}
+#root {
+	overflow-x: hidden;
+}
 
-// $header: #282c34;
-// $blue: #007bff;
-// $cherry: #ff073a;
-// $green: #28a745;
-// $gray: #6c757d;
+$header: #282c34;
+$blue: #007bff;
+$cherry: #ff073a;
+$green: #28a745;
+$gray: #6c757d;
 
-// // ! Navbar CSS
+// ! Navbar CSS
 
-// .Navbar {
-// 	-webkit-box-shadow: 0 3px 5px rgba(32, 33, 36, 0.5);
-// 	-moz-box-shadow: 0 3px 5px rgba(32, 33, 36, 0.5);
-// 	box-shadow: 0 3px 5px rgba(32, 33, 36, 0.5);
-// 	display: flex;
-// 	flex-direction: row;
-// 	position: fixed;
-// 	z-index: 9999;
-// 	height: 50px;
-// 	height: 4.5rem;
-// 	width: 100%;
-// 	justify-content: space-between;
-// 	align-items: center;
-// 	font-weight: bolder;
-// 	padding: 10px;
-// 	background-color: $header;
-// 	a {
-// 		img {
-// 			width: 5rem;
-// 			height: 3rem;
-// 			margin: 0;
-// 		}
-// 	}
-// 	.link {
-// 		display: flex;
-// 		align-items: center;
-// 		li {
-// 			margin: 0 12px;
-// 			list-style: none;
-// 			color: white;
-// 			font-size: 20px;
-// 			letter-spacing: 2px;
-// 			.active {
-// 				color: #61dafb;
-// 			}
-// 			a {
-// 				color: white;
-// 				font-size: 20px;
-// 				letter-spacing: 2px;
-// 			}
-// 			a:hover {
-// 				color: #61dafb;
-// 			}
-// 		}
-// 	}
-// 	a {
-// 		color: white;
-// 		font-size: 20px;
-// 		letter-spacing: 2px;
-// 	}
-// }
+.Navbar {
+	-webkit-box-shadow: 0 3px 5px rgba(32, 33, 36, 0.5);
+	-moz-box-shadow: 0 3px 5px rgba(32, 33, 36, 0.5);
+	box-shadow: 0 3px 5px rgba(32, 33, 36, 0.5);
+	display: flex;
+	flex-direction: row;
+	position: fixed;
+	z-index: 9999;
+	height: 50px;
+	height: 4.5rem;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: bolder;
+	padding: 10px;
+	background-color: $header;
+	a {
+		img {
+			width: 5rem;
+			height: 3rem;
+			margin: 0;
+		}
+	}
+	.link {
+		display: flex;
+		align-items: center;
+		li {
+			margin: 0 12px;
+			list-style: none;
+			color: white;
+			font-size: 20px;
+			letter-spacing: 2px;
+			.active {
+				color: #61dafb;
+			}
+			a {
+				color: white;
+				font-size: 20px;
+				letter-spacing: 2px;
+			}
+			a:hover {
+				color: #61dafb;
+			}
+		}
+	}
+	a {
+		color: white;
+		font-size: 20px;
+		letter-spacing: 2px;
+	}
+}
 
-// //! Section - 1 || Home CSS
-// .covid19app {
-// 	padding: 5.5rem 0;
+//! Section - 1 || Home CSS
+.covid19app {
+	padding: 5.5rem 0;
 
-// 	.home {
-// 		display: flex;
-// 		flex-direction: row-reverse;
-// 		justify-content: space-around;
-// 		flex-wrap: wrap;
-// 		margin: 0 5rem;
-// 		padding: 0 10px !important;
-// 		.left,
-// 		.right {
-// 			display: flex;
-// 			flex-direction: column;
-// 			width: 35rem;
-// 			margin: 20px 0px;
-// 			// #svg2 {
-// 			// 	display: flex;
-// 			// 	align-self: flex-start;
-// 			// 	height: 450px;
-// 			// 	margin: 10px auto;
-// 			// }
-// 			.right {
-// 				div {
-// 					.last-update {
-// 						display: flex;
-// 						h3 {
-// 							margin: 0;
-// 							padding: 10px 10px 10px 0;
-// 							text-align: left;
-// 							font-weight: bolder;
-// 							letter-spacing: 1px;
-// 							color: $green;
-// 						}
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// 	// ! -------------------- @Media Query ----------------------------------------------------
-// }
-// @media (max-width: 768px) {
-// 	//! Navbar CSS
+	.home {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		margin: 0 5rem;
+		padding: 0 10px !important;
+		.left,
+		.right {
+			display: flex;
+			flex-direction: column;
+			width: 35rem;
+			margin: 20px 0px;
+			// #svg2 {
+			// 	display: flex;
+			// 	align-self: flex-start;
+			// 	height: 450px;
+			// 	margin: 10px auto;
+			// }
+			.right {
+				div {
+					.last-update {
+						display: flex;
+						h3 {
+							margin: 0;
+							padding: 10px 10px 10px 0;
+							text-align: left;
+							font-weight: bolder;
+							letter-spacing: 1px;
+							color: $green;
+						}
+					}
+				}
+			}
+		}
+	}
+	// ! -------------------- @Media Query ----------------------------------------------------
+}
+@media (max-width: 768px) {
+	//! Navbar CSS
 
-// 	.Navbar {
-// 		.link {
-// 			a {
-// 				font-size: 12px !important;
-// 				letter-spacing: normal !important;
-// 				img {
-// 					border-radius: 5px;
-// 					height: 30px !important;
-// 					width: 90px !important;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
+	.Navbar {
+		.link {
+			a {
+				font-size: 12px !important;
+				letter-spacing: normal !important;
+				img {
+					border-radius: 5px;
+					height: 30px !important;
+					width: 90px !important;
+				}
+			}
+		}
+	}
+}

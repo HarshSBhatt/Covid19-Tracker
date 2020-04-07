@@ -62,24 +62,16 @@ function StateData(props) {
             dataIndex: 'confirmed',
             key: 'confirmed',
             className: 'content',
-            width: '15%',
+            width: '20%',
             defaultSortOrder: 'descend',
             sorter: (a, b) => a.confirmed - b.confirmed
-        },
-        {
-            title: window.innerWidth <= 768 ? 'A' : 'Active',
-            dataIndex: 'active',
-            key: 'active',
-            className: 'content',
-            width: '15%',
-            sorter: (a, b) => a.active - b.active
         },
         {
             title: window.innerWidth <= 768 ? 'R' : 'Recovered',
             dataIndex: 'recovered',
             key: 'recovered',
             className: 'content',
-            width: '15%',
+            width: '20%',
             sorter: (a, b) => a.recovered - b.recovered
         },
         {
@@ -87,7 +79,7 @@ function StateData(props) {
             dataIndex: 'deaths',
             key: 'deaths',
             className: 'content',
-            width: '15%',
+            width: '20%',
             sorter: (a, b) => a.deaths - b.deaths
         }
     ];
@@ -97,7 +89,6 @@ function StateData(props) {
                 key: state.state,
                 state: state.state,
                 confirmed: state.deltaconfirmed,
-                active: state.deltaactive,
                 recovered: state.deltarecovered,
                 deaths: state.deltadeaths,
                 children: stateDistrictWiseData[state.state]
@@ -248,11 +239,11 @@ function StateData(props) {
                     </div>
                     <div className="new-cases">
                         <h1>Today's New Cases</h1>
-                        <h5 className="new_update">
+                        {/* <h5 className="new_update">
                             <span className="cities">UPDATE</span> Click <PlusSquareOutlined /> to get cities detail
-						</h5>
+						</h5> */}
                         {window.innerWidth <= 768 ? (
-                            <h3 className="tips">C: Confirmed | A: Active | R: Recovered | D: Deaths</h3>
+                            <h3 className="tips">C: Confirmed | R: Recovered | D: Deaths</h3>
                         ) : null}
                         <Table
                             size="small"
@@ -270,9 +261,6 @@ function StateData(props) {
                                             <th>Total</th>
                                             <td>
                                                 <Text type="danger">{stateData[0] && stateData[0].deltaconfirmed}</Text>
-                                            </td>
-                                            <td>
-                                                <Text>{stateData[0] && stateData[0].deltaactive}</Text>
                                             </td>
                                             <td>
                                                 <Text>{stateData[0] && stateData[0].deltarecovered}</Text>

@@ -39,7 +39,6 @@ function IndiaMap(props) {
                     maxConfirmed: maxConfirmed,
                     minConfirmed: minConfirmed
                 });
-
             }
         },
         [states.length]
@@ -48,7 +47,6 @@ function IndiaMap(props) {
     useEffect(
         () => {
             setStates(props.states);
-
         },
         [props.states]
     );
@@ -73,9 +71,7 @@ function IndiaMap(props) {
         const delta = Math.floor(statistic.maxConfirmed / (numCells - 1));
         const cells = Array.from(Array(numCells).keys()).map((i) => i * delta);
         const colors = ['#d8d1e1', '#d8bfd8', '#a493b9', '#8a74a4', '#58466c', '#3f324d'];
-        const colorScale = d3.scaleThreshold()
-            .domain(cells.slice(1))
-            .range(colors);
+        const colorScale = d3.scaleThreshold().domain(cells.slice(1)).range(colors);
 
         // .scaleQuantile()
         // .domain(
@@ -86,29 +82,24 @@ function IndiaMap(props) {
         // .range(colors);
 
         function label({ i, genLength, generatedLabels, labelDelimiter }) {
-            const gl = generatedLabels[i].split(' ')
-            const generatedLabel = [gl[0], gl[2] - 1]
+            const gl = generatedLabels[i].split(' ');
+            const generatedLabel = [gl[0], gl[2] - 1];
             if (i === genLength - 1) {
                 const n = Math.floor(generatedLabel[0]);
                 return `${n}+`;
             } else {
                 if (isNaN(parseInt(generatedLabel[0]))) {
-                    generatedLabel[0] = 0
+                    generatedLabel[0] = 0;
                 }
                 const n1 = Math.floor(parseInt(generatedLabel[0]));
                 const n2 = Math.floor(parseInt(generatedLabel[1]));
                 return `${n1} - ${n2}`;
             }
         }
-
         // const color = d3.scaleSequential()
         //     .domain(['#D8BFD8', '#d8d1e1', '#a493b9', '#8a74a4', '#58466c', '#3f324d']);
 
-        svg.append('g')
-            .attr('class', 'legendLinear')
-            .attr('transform', 'translate(0, 500)');
-
-
+        svg.append('g').attr('class', 'legendLinear').attr('transform', 'translate(0, 500)');
 
         const legendLinear = legendColor()
             .shapeWidth(80)
@@ -118,10 +109,7 @@ function IndiaMap(props) {
             .title('Confirmed Cases')
             .orient('horizontal')
             .scale(colorScale);
-        svg.select('.legendLinear')
-            .call(legendLinear);
-
-
+        svg.select('.legendLinear').call(legendLinear);
 
         svg.append('g').attr('class', 'legendLinear').attr('transform', 'translate(0, 500)');
         const promises = [d3.json('/india.json')];
@@ -163,7 +151,9 @@ function IndiaMap(props) {
                 .style('cursor', 'pointer')
                 .append('title')
                 .text(function (d) {
-                    const s = `${unemployment.get(d.properties.ST_NM.toLowerCase())} CASES IN ${d.properties.ST_NM.toUpperCase()}`
+                    const s = `${unemployment.get(
+                        d.properties.ST_NM.toLowerCase()
+                    )} CASES IN ${d.properties.ST_NM.toUpperCase()}`;
                     return s;
                 });
 
@@ -174,7 +164,6 @@ function IndiaMap(props) {
                 .attr('stroke-width', 1)
                 .attr('d', path(topojson.mesh(india, india.objects.india)));
         }
-
     };
 
     return (
@@ -203,15 +192,7 @@ function IndiaMap(props) {
                 <div className="level-item is-active">
                     <h5>Active</h5>
                     <div className="stats-num">
-                        <h4>
-                            [{state ? state.deltaactive >= 0 ? (
-                                '+' + state.deltaactive
-                            ) : (
-                                    state.deltadeltaactive
-                                ) : (
-                                    ''
-                                )}]
-						</h4>
+                        <h4>{'-'}</h4>
                         <h1>{state.active}</h1>
                     </div>
                 </div>
@@ -233,15 +214,7 @@ function IndiaMap(props) {
                 <div className="level-item is-dead">
                     <h5>Deaths</h5>
                     <div className="stats-bottom">
-                        <h4>
-                            [{state ? state.deltadeaths >= 0 ? (
-                                '+' + state.deltadeaths
-                            ) : (
-                                    state.deltadeaths
-                                ) : (
-                                    ''
-                                )}]
-						</h4>
+                        <h4>[{state ? state.deltadeaths >= 0 ? '+' + state.deltadeaths : state.deltadeaths : ''}]</h4>
                         <h1>{state.deaths}</h1>
                     </div>
                 </div>
@@ -254,7 +227,7 @@ function IndiaMap(props) {
             </div>
             <div className="svg-parent">
                 <svg
-                    className='anim'
+                    className="anim"
                     id="chart"
                     width={window.innerWidth < 769 ? 400 : 580}
                     height={window.innerWidth < 769 ? 550 : 640}

@@ -17,14 +17,13 @@ export default class SBC extends PureComponent {
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey={window.innerWidth <= 768 ? 'abbr' : 'state'} />
+                <XAxis dataKey={window.innerWidth <= 768 ? 'statecode' : 'state'} />
                 <YAxis />
                 <Tooltip />
                 <Legend />
                 <Bar dataKey="active" stackId="a" fill="#01579B" />
                 <Bar dataKey="recovered" stackId="a" fill="#4FC3F7" />
                 <Bar dataKey="deaths" stackId="a" fill="#B3E5FC" />
-
             </BarChart>
         );
     }
