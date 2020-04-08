@@ -338,6 +338,11 @@ h6 {
 }
 .new-cases {
 	padding: 15px 0;
+	@media (max-width: 768px) {
+		h1 {
+			font-size: 20px !important;
+		}
+	}
 	table {
 		font-size: 12px !important;
 	}

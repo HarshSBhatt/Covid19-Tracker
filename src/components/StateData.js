@@ -84,17 +84,23 @@ function StateData(props) {
         }
     ];
     stateData.forEach((state, index) => {
-        if (index !== 0 && state.deltaconfirmed !== 0) {
-            stateCase.push({
-                key: state.state,
-                state: state.state,
-                confirmed: state.deltaconfirmed,
-                recovered: state.deltarecovered,
-                deaths: state.deltadeaths,
-                children: stateDistrictWiseData[state.state]
-                    ? cities(stateDistrictWiseData[state.state].districtData)
-                    : null
-            });
+        if (index !== 0 && (state.deltaconfirmed !== 0 || state.deltadeaths !== 0 || state.deltarecovered !== 0)) {
+            state.deltaconfirmed > 0 ?
+                stateCase.push({
+                    key: state.state,
+                    state: state.state,
+                    confirmed: state.deltaconfirmed,
+                    recovered: state.deltarecovered,
+                    deaths: state.deltadeaths,
+                    children: cities(stateDistrictWiseData[state.state].districtData)
+                }) :
+                stateCase.push({
+                    key: state.state,
+                    state: state.state,
+                    confirmed: state.deltaconfirmed,
+                    recovered: state.deltarecovered,
+                    deaths: state.deltadeaths,
+                })
         }
     });
     return (
@@ -238,7 +244,7 @@ function StateData(props) {
                         </div>
                     </div>
                     <div className="new-cases">
-                        <h1>Today's New Cases</h1>
+                        <h1>Today's Timeline of cases</h1>
                         {/* <h5 className="new_update">
                             <span className="cities">UPDATE</span> Click <PlusSquareOutlined /> to get cities detail
 						</h5> */}
