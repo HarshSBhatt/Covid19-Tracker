@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
 import Text from 'antd/lib/typography/Text';
-import { ArrowUpOutlined, PlusSquareOutlined } from '@ant-design/icons';
+import { ArrowUpOutlined } from '@ant-design/icons';
 
 function Stats(props) {
     const { stateDistrictWiseData, stateData } = props;

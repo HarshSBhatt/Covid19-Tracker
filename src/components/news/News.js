@@ -38,9 +38,14 @@ function News() {
         }
     };
     news2 && news1.push(...news2)
-    const newsSet = new Set(news1)
-    const news3 = [...newsSet]
-
+    const uniqueNews = []
+    const uniqueTitle = []
+    news1.forEach((news) => {
+        if (!uniqueTitle.includes(news.title)) {
+            uniqueTitle.push(news.title)
+            uniqueNews.push(news)
+        }
+    })
     if (loading) return <Loader message='Fetching Latest News' />;
     return (
         <React.Fragment>
@@ -52,7 +57,7 @@ function News() {
             </Helmet>
             <div className='news-header anim'>COVID19 LATEST NEWS</div>
             <div className='news-wrapper anim' style={{ minHeight: window.innerHeight }}>
-                {news3.length ? news3.map((news, key) => (
+                {uniqueNews.length ? uniqueNews.map((news, key) => (
                     <a href={news.url} target="_blank" rel="noopener noreferrer" key={key}>
                         <Card
                             loading={loading}

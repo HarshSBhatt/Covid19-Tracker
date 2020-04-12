@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpOutlined, PlusSquareOutlined } from '@ant-design/icons';
+import { ArrowUpOutlined } from '@ant-design/icons';
 import { Table, Empty } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import Moment from 'react-moment';
@@ -160,25 +160,8 @@ function StateData(props) {
                             <div className="number">
                                 <div>{stateData[0].active}</div>
                                 <div>
-                                    <h4>
-                                        [{stateData[0] ? stateData[0].deltaactive >=
-                                            0 ? (
-                                                '+' +
-                                                stateData[0].deltaactive
-                                            ) : (
-                                                stateData[0].deltaactive
-                                            ) : (
-                                                ''
-                                            )}]
-									</h4>
-                                    <h4>
-                                        <ArrowUpOutlined />{' '}
-                                        {(stateData[0].deltaactive /
-                                            (stateData[0].active - stateData[0].deltaactive) *
-                                            100).toFixed(2)}
-                                        {'% '}
-										today
-									</h4>
+                                    <h4>{''}</h4>
+                                    <h4>{'N/A'}</h4>
                                 </div>
                             </div>
                         </div>
