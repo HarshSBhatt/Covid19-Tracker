@@ -19,6 +19,7 @@ function News() {
     if (fetched === false) {
       getNews();
     }
+    // eslint-disable-next-line
   }, [fetched]);
   // const url = 'http://newsapi.org/v2/everything?' + 'q=corona+covid19+covid-19&' + 'from=2020-04-02&' + 'sortBy=popularity&' + 'apiKey=481ac3f09e5b4be58767b8d08554eb8d'
   const API_KEY = "102a46c61d014376b8cbfc3143e7ad10";
